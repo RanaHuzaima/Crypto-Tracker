@@ -25,7 +25,7 @@ const CoinDetail = () => {
               alt={data.id}
               className=" rounded-full w-16"
             />
-            <span className=" text-2xl font-bold">{data.name}</span>
+            <h1 className=" text-2xl font-bold">{data.name}</h1>
           </div>
           <p
             className=" [&>a]:text-blue-400 [&>a]:underline"
@@ -37,24 +37,6 @@ const CoinDetail = () => {
       )}
     </>
   );
-  //   return !data > 0 ? (
-  //     <div>
-  //       <div className=" flex items-center gap-2 ">
-  //         <img
-  //           src={data.image.small}
-  //           alt={data.id}
-  //           className=" rounded-full w-16"
-  //         />
-  //         <span className=" text-2xl font-bold">{data.name}</span>
-  //       </div>
-  //       <p
-  //         className=" [&>a]:text-blue-400 [&>a]:underline"
-  //         dangerouslySetInnerHTML={{ __html: data.description.en }}
-  //       ></p>
-  //     </div>
-  //   ) : (
-  //     <div>Loading</div>
-  //   );
 };
 
 export default CoinDetail;

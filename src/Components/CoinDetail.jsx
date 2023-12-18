@@ -10,7 +10,6 @@ const CoinDetail = () => {
     );
     const data = await res.json();
     setData(data);
-    console.log(data);
   };
 
   useEffect(() => {

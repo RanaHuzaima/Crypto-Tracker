@@ -12,13 +12,13 @@ const SingleCoin = ({ coin }) => {
           key={coin.id}
           className="grid grid-cols-3 md:grid-cols-4 p-3 rounded-lg border-gray-200 border-b hover:bg-gray-200 items-center cursor-pointer"
         >
-          <div className=" flex items-center gap-2">
+          <div className=" flex items-center gap-[3px] md:gap-2">
             <img
               className="w-8 h-8 rounded-full"
               src={coin.image}
               alt={coin.id}
             />
-            <span className="text-xl md:text-2xl font-semibold">
+            <span className=" text-lg md:text-2xl font-semibold">
               {coin.name}
             </span>
           </div>

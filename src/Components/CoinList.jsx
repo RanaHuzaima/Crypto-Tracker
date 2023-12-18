@@ -12,7 +12,7 @@ const CoinList = () => {
   const number = [...Array(npage + 1).keys()].slice(1);
 
   const prevPage = () => {
-    if (page !== firstIndex) {
+    if (page !== 1) {
       setPage(page - 1);
     }
   };
@@ -20,7 +20,7 @@ const CoinList = () => {
     setPage(n);
   };
   const nextPage = () => {
-    if (page !== lastIndex) {
+    if (page !== npage) {
       setPage(page + 1);
     }
   };
@@ -48,7 +48,7 @@ const CoinList = () => {
         <div className="text-center mt-3 font-semibold text-xl">Loading...</div>
       )}
       <div>
-        <ul className=" flex items-center justify-center gap-2 mt-3">
+        <ul className=" flex items-center justify-center gap-2 mt-4 mb-2 flex-wrap">
           <li
             className={`border px-3 py-1 rounded-lg border-slate-900 ${
               page > 1 ? "block" : "hidden"

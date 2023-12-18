@@ -5,7 +5,7 @@ import CoinList from "../Components/CoinList";
 const HomePage = () => {
   return (
     <>
-      <div className=" container">
+      <div>
         <div className="max-w-screen-xl mx-auto p-4">
           <TrendingCoin />
           <CoinList />

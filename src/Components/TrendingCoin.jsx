@@ -14,7 +14,7 @@ const TrendingCoin = () => {
   }, []);
   return (
     <>
-      <div className="text-2xl font-bold mb-3">Today Trending</div>
+      <div className="text-2xl font-bold mb-3">Top Trending</div>
       {data.length > 0 &&
         data.slice(0, 5).map((coins, i) => (
           <Link to={`/coin/${coins.item.id}`}>

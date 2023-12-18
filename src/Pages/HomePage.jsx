@@ -5,11 +5,9 @@ import CoinList from "../Components/CoinList";
 const HomePage = () => {
   return (
     <>
-      <div>
-        <div className="max-w-screen-xl mx-auto p-4">
-          <TrendingCoin />
-          <CoinList />
-        </div>
+      <div className="max-w-screen-xl mx-auto p-4">
+        <TrendingCoin />
+        <CoinList />
       </div>
     </>
   );

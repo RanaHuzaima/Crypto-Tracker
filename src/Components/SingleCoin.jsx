@@ -13,7 +13,11 @@ const SingleCoin = ({ coin }) => {
           className="grid grid-cols-3 md:grid-cols-4 p-3 rounded-lg border-gray-200 border-b hover:bg-gray-200 items-center cursor-pointer"
         >
           <div className=" flex items-center gap-2">
-            <img className="w-8 rounded-full" src={coin.image} alt={coin.id} />
+            <img
+              className="w-8 h-8 rounded-full"
+              src={coin.image}
+              alt={coin.id}
+            />
             <span className="text-xl md:text-2xl font-semibold">
               {coin.name}
             </span>
@@ -33,7 +37,7 @@ const SingleCoin = ({ coin }) => {
             ) : (
               <TrendingLow />
             )}
-            {coin.price_change_percentage_24h} %
+            {coin.price_change_percentage_24h.toFixed(3)} %
           </div>
           <div className="text-center hidden md:block">
             {currencyFormat(coin.market_cap)}

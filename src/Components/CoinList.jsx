@@ -20,7 +20,7 @@ const CoinList = () => {
     setPage(n);
   };
   const nextPage = () => {
-    if (page !== firstIndex) {
+    if (page !== lastIndex) {
       setPage(page + 1);
     }
   };
@@ -52,32 +52,29 @@ const CoinList = () => {
           <li
             className={`border px-3 py-1 rounded-lg border-slate-900 ${
               page > 1 ? "block" : "hidden"
-            }`}
+            } cursor-pointer`}
+            onClick={prevPage}
           >
-            <a href="#" onClick={prevPage}>
-              Prev
-            </a>
+            Prev
           </li>
           {number.map((n, i) => (
             <li
               className={`border px-3 py-1 rounded-lg border-slate-900 ${
                 page === n ? " bg-gray-300" : ""
-              } `}
+              } cursor-pointer `}
               key={i}
+              onClick={() => changePage(n)}
             >
-              <a href="#" onClick={() => changePage(n)}>
-                {n}
-              </a>
+              {n}
             </li>
           ))}
           <li
             className={`border px-3 py-1 rounded-lg border-slate-900 ${
               page < 10 ? "block" : "hidden"
-            }`}
+            } cursor-pointer`}
+            onClick={nextPage}
           >
-            <a href="#" onClick={nextPage}>
-              Next
-            </a>
+            Next
           </li>
         </ul>
       </div>

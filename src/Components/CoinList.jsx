@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import SingleCoin from "./SingleCoin";
-import Data from "../Data.json";
 
 const CoinList = () => {
   const [data, setData] = useState([]);
@@ -25,34 +24,46 @@ const CoinList = () => {
     }
   };
 
-  // const fetchData = async () => {
-  //   const res = await ;
-  //   const data = await res.json();
-  //   setData(data);
-  //   console.log(data);
-  // };
+  const fetchData = async () => {
+    const options = {
+      headers: {
+        "x-access-token": "",
+      },
+    };
+    const res = await fetch(
+      "https://api.coinranking.com/v2/coins?limit=100",
+      options
+    );
+    const data = await res.json();
+    setData(data.data.coins);
+    console.log(data.data.coins);
+  };
 
   useEffect(() => {
-    setData(Data);
-    // fetchData();
+    fetchData();
   }, []);
 
   return (
     <section>
       <div className="text-2xl font-bold mb-3 mt-3">Market</div>
-      <div className="grid grid-cols-3 md:grid-cols-5 p-3 rounded-lg border-slate-900 border items-center">
+      <div className="grid grid-cols-3 md:grid-cols-6 p-3 rounded-lg border-slate-900 border items-center">
         <div className=" text-xl font-bold">Name</div>
         <div className="text-center text-xl font-bold">Price</div>
-        <div className="text-center text-xl font-bold">Last 1h</div>
-        <div className="text-center text-xl font-bold">Last 24h</div>
+        <div className="text-center text-xl font-bold ">Last 1h</div>
+        <div className="text-center text-xl font-bold hidden md:block">
+          Last 24h
+        </div>
         <div className="text-center text-xl font-bold hidden md:block">
           Market Cap
+        </div>
+        <div className="text-center text-xl font-bold hidden md:block">
+          Last 24h
         </div>
       </div>
       {data.length > 0 ? (
         data
           .slice(firstIndex, lastIndex)
-          .map((coin) => <SingleCoin key={coin.id} coin={coin} />)
+          .map((coin) => <SingleCoin key={coin.uuid} coin={coin} />)
       ) : (
         <div className="text-center mt-3 font-semibold text-xl">Loading...</div>
       )}

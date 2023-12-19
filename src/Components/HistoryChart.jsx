@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
 import {
   Chart as ChartJS,
@@ -12,7 +12,6 @@ import {
   Legend,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import moment from "moment";
 
 ChartJS.register(
   CategoryScale,
@@ -25,46 +24,60 @@ ChartJS.register(
   Legend
 );
 
-const HistoryChart = () => {
+const HistoryChart = ({ sparklineData }) => {
   const { id } = useParams();
-  const [data, setData] = useState([]);
-  const fetchdata = async () => {
-    const res = await fetch(
-      `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=7`
-    );
-    const data = await res.json();
-    const coincharData = data.prices.map((value) => ({
-      x: value[0],
-      y: value[1].toFixed(2),
-    }));
-    setData(coincharData);
-    console.log(coincharData);
-  };
+  console.log(sparklineData);
+
   const options = {
-    Responsive: true,
+    plugins: {
+      legend: {
+        display: false,
+      },
+    },
+    responsive: true,
+    scales: {
+      x: {
+        type: "category",
+        labels: Array.from({ length: sparklineData.length }, (_, i) => {
+          const hour = (i + 7) % 12 || 12;
+          const ampm = i < 12 ? "PM" : "AM";
+          return `${hour}:00 ${ampm}`;
+        }),
+      },
+    },
   };
-  const chartdata = {
-    labels: data.map((value) => moment(value.x).format("MMM DD")),
+
+  const chartData = {
+    labels: Array.from({ length: sparklineData.length }, (_, i) => i + 1),
     datasets: [
       {
         fill: true,
-        label: id,
-        data: data.map((value) => value.y),
+        data: sparklineData,
+        backgroundColor: (ctx) => {
+          const gradient = ctx.chart.ctx.createLinearGradient(
+            0,
+            0,
+            0,
+            ctx.chart.height
+          );
+          gradient.addColorStop(0.6, "rgba(29, 79, 216, 0.568)");
+          gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+          return gradient;
+        },
         borderColor: "rgb(29,78,216)",
-        backgroundColor: "rgba(15, 103, 161, 0.273)",
+        borderWidth: 1,
+        pointColor: "#fff",
+        pointRadius: 1,
+        pointHoverRadius: 1,
+        pointHighlightFill: "#fff",
       },
     ],
   };
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
   return (
-    <>
-      <div className="mb-5 h-[50vh]">
-        <Line options={options} data={chartdata} />
-      </div>
-    </>
+    <div className="mb-5 md:h-[60vh]">
+      <Line options={options} data={chartData} />
+    </div>
   );
 };
 

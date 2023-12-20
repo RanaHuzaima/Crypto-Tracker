@@ -5,10 +5,23 @@ import TrendingLow from "../Icons/TrendingLow";
 import LineChart from "../Components/LineChart";
 
 const SingleCoin = ({ coin }) => {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
+  const formatNumber = (value, currencySymbol = "") => {
+    const absValue = Math.abs(Number(value)); // Convert value to a number
+
+    const trillion = 1e12;
+    const billion = 1e9;
+    const million = 1e6;
+
+    if (absValue >= trillion) {
+      return `${currencySymbol}${(absValue / trillion).toFixed(2)} Trillion`;
+    } else if (absValue >= billion) {
+      return `${currencySymbol}${(absValue / billion).toFixed(2)} Billion`;
+    } else if (absValue >= million) {
+      return `${currencySymbol}${(absValue / million).toFixed(2)} Million`;
+    } else {
+      return `${currencySymbol}${absValue.toLocaleString("en-US")}`;
+    }
+  };
   return (
     <>
       <Link to={`/coin/${coin.uuid}`}>
@@ -26,17 +39,19 @@ const SingleCoin = ({ coin }) => {
               {coin.name}
             </span>
           </div>
-          <div className="text-center">{USDollar.format(coin.price)}</div>
+          <div className="text-center text-lg md:text-xl font-semibold">
+            {formatNumber(coin.price, "$")}
+          </div>
           <div
-            className={` flex gap-1 justify-center ${
+            className={` text-lg md:text-xl font-semibold flex gap-1 justify-center ${
               coin.change > 0 ? " text-green-500" : "text-red-500"
             }`}
           >
             {coin.change > 0 ? <TrendingHigh /> : <TrendingLow />}
             {coin.change} %
           </div>
-          <div className="text-center hidden md:block">
-            {USDollar.format(coin.marketCap)}
+          <div className="text-center text-lg md:text-xl font-semibold hidden md:block">
+            {formatNumber(coin.marketCap, "$")}
           </div>
           <div className="px-7 hidden md:block ">
             <LineChart sparklineData={coin.sparkline} change={coin.change} />

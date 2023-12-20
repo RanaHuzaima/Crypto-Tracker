@@ -10,7 +10,7 @@ const CoinDetail = ({ coinData }) => {
   return (
     <>
       {Object.keys(coinData).length > 0 ? (
-        <div className="border border-slate-900 rounded-lg p-3">
+        <div className="border border-slate-900 rounded-lg p-3 mb-5">
           <div className=" flex items-center justify-between gap-2 ">
             <div className=" flex items-center gap-2">
               <img

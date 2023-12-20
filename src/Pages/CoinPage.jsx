@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import HistoryChart from "../Components/HistoryChart";
 import CoinDetail from "../Components/CoinDetail";
 import { useParams } from "react-router-dom";
+import CoinStatistics from "../Components/CoinStatistics";
+import CoinSupply from "../Components/CoinSupply";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -37,6 +39,18 @@ const CoinPage = () => {
           <div>
             <HistoryChart sparklineData={chartData} />
             <CoinDetail coinData={coinData} />
+            <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
+              <CoinStatistics
+                coinData={coinData}
+                name="Value Statistics"
+                desp="An overview showing the statistics of Bitcoin, such as the base and quote currency, the rank, and trading volume."
+              />
+              <CoinSupply
+                coinData={coinData}
+                name="Supply information"
+                desp="View the total and circulating supply of Bitcoin, including details on how the supplies are calculated. "
+              />
+            </div>
           </div>
         ) : (
           <div className="text-center mt-3 font-semibold text-xl">

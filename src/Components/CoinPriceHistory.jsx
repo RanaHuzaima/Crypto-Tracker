@@ -2,7 +2,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const CoinPriceHistory = () => {
+const CoinPriceHistory = ({ coinData }) => {
   const { id } = useParams();
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
@@ -12,12 +12,16 @@ const CoinPriceHistory = () => {
   const npage = Math.ceil(data.length / indexperpage);
   const number = [...Array(npage + 1).keys()].slice(1);
 
+  let USDollar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   const fetchData = async () => {
     const res = await fetch(
       `https://api.coinranking.com/v2/coin/${id}/history`
     );
     const result = await res.json();
-    console.log(result.data.history);
     setData(result.data.history);
   };
   const HandelNextPage = () => {
@@ -41,21 +45,25 @@ const CoinPriceHistory = () => {
       <div className=" border border-slate-900 rounded-lg p-3">
         <span className="text-2xl font-bold">Price performance</span>
         <p className=" text-sm my-3">
-          This is the price performance of Bitcoin (BTC). It shows the
-          percentage gains and losses for each time period.
+          This is the price performance of Bitcoin (BTC). It shows the price
+          gains and losses for each time period.
         </p>
         {data &&
           data.slice(firstIndex, lastIndex).map((data) => (
             <div
               key={data.price}
-              className="flex items-center justify-between mt-3 border-slate-500 border rounded-lg p-2"
+              className={`flex items-center justify-between mt-3 border-slate-500 border rounded-lg p-2 ${
+                coinData.price >= data.price ? "bg-[#FDE7EA]" : " bg-[#E6F7EE]"
+              }`}
             >
               <div className="flex gap-2">
                 <span className=" font-bold">
                   {moment.unix(data.timestamp).format("MMM Do,h:mm a")}
                 </span>
               </div>
-              <span className="font-semibold">{data.price}</span>
+              <span className="font-semibold">
+                {USDollar.format(data.price)}
+              </span>
             </div>
           ))}
         <div className=" mt-2">

@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import CoinStatistics from "../Components/CoinStatistics";
 import CoinSupply from "../Components/CoinSupply";
 import CoinPriceHistory from "../Components/CoinPriceHistory";
+import CoinCalculator from "../Components/CoinCalculator";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -23,7 +24,6 @@ const CoinPage = () => {
       );
       const result = await res.json();
       setCoinData(result.data.coin);
-      console.log(result.data.coin);
       setChartData(result.data.coin.sparkline);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -41,7 +41,8 @@ const CoinPage = () => {
             <HistoryChart sparklineData={chartData} />
             <CoinDetail coinData={coinData} />
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
-              <CoinPriceHistory />
+              <CoinPriceHistory coinData={coinData} />
+              <CoinCalculator />
               <CoinStatistics
                 coinData={coinData}
                 name="Value Statistics"

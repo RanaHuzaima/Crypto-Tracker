@@ -36,7 +36,6 @@ const CoinList = () => {
     );
     const data = await res.json();
     setData(data.data.coins);
-    console.log(data.data.coins);
   };
 
   useEffect(() => {

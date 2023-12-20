@@ -37,6 +37,9 @@ const HistoryChart = ({ sparklineData }) => {
     responsive: true,
     scales: {
       x: {
+        grid: {
+          display: false,
+        },
         type: "category",
         labels: Array.from({ length: sparklineData.length }, (_, i) => {
           const hour = (i + 7) % 12 || 12;

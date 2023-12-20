@@ -42,7 +42,7 @@ const CoinPage = () => {
             <CoinDetail coinData={coinData} />
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
               <CoinPriceHistory coinData={coinData} />
-              <CoinCalculator />
+              <CoinCalculator coinData={coinData} />
               <CoinStatistics
                 coinData={coinData}
                 name="Value Statistics"

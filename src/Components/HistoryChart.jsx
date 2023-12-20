@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -25,9 +24,6 @@ ChartJS.register(
 );
 
 const HistoryChart = ({ sparklineData }) => {
-  const { id } = useParams();
-  console.log(sparklineData);
-
   const options = {
     plugins: {
       legend: {
@@ -68,9 +64,9 @@ const HistoryChart = ({ sparklineData }) => {
           return gradient;
         },
         borderColor: "rgb(29,78,216)",
-        borderWidth: 1,
+        borderWidth: 2,
         pointColor: "#fff",
-        pointRadius: 1,
+        pointRadius: 3,
         pointHoverRadius: 1,
         pointHighlightFill: "#fff",
       },
@@ -78,7 +74,7 @@ const HistoryChart = ({ sparklineData }) => {
   };
 
   return (
-    <div className="mb-5 md:h-[60vh]">
+    <div className="mb-5 md:mb-14 cursor-pointer">
       <Line options={options} data={chartData} />
     </div>
   );

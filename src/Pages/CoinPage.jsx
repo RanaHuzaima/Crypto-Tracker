@@ -20,7 +20,7 @@ const CoinPage = () => {
       );
       const result = await res.json();
       setCoinData(result.data.coin);
-      console.log(result.data.coin.sparkline);
+      console.log(result.data.coin);
       setChartData(result.data.coin.sparkline);
     } catch (error) {
       console.error("Error fetching data:", error);

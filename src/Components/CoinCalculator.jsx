@@ -5,16 +5,17 @@ const CoinCalculator = ({ coinData }) => {
   const [secondInput, setSecondInput] = useState(0);
 
   useEffect(() => {
-    if (firstInput !== NaN && firstInput > 0) {
+    if (firstInput > 0) {
       const result = firstInput * (coinData.price || 0);
       setSecondInput(result.toFixed(3));
     } else {
+      setFirstInput("");
       setSecondInput(0);
     }
   }, [firstInput]);
 
   const handleFirstInput = (e) => {
-    if (e.target.value >= 0) setFirstInput(e.target.value);
+    if (e.target.value >= 0) setFirstInput(Number(e.target.value));
   };
 
   return (

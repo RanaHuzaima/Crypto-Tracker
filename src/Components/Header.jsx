@@ -14,7 +14,7 @@ const Header = () => {
             className="h-8"
             alt="Crypto Tracker Logo"
           />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+          <span className="self-center text-2xl font-semibold whitespace-nowrap">
             Crypto Tracker
           </span>
         </Link>

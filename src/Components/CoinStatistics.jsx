@@ -47,7 +47,7 @@ const CoinStatistics = ({ coinData, name, desp }) => {
         {data.map((val, index) => (
           <div
             key={index}
-            className="flex items-center justify-between mt-3 border-t border-slate-500"
+            className="flex items-center justify-between mt-3 border-t border-slate-500 px-2"
           >
             <div className="flex gap-2 mt-3">
               <img src={val[Object.keys(val)[1]]} alt="icon" />

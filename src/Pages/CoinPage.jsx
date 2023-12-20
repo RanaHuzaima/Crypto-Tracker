@@ -4,6 +4,7 @@ import CoinDetail from "../Components/CoinDetail";
 import { useParams } from "react-router-dom";
 import CoinStatistics from "../Components/CoinStatistics";
 import CoinSupply from "../Components/CoinSupply";
+import CoinPriceHistory from "../Components/CoinPriceHistory";
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -40,6 +41,7 @@ const CoinPage = () => {
             <HistoryChart sparklineData={chartData} />
             <CoinDetail coinData={coinData} />
             <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
+              <CoinPriceHistory />
               <CoinStatistics
                 coinData={coinData}
                 name="Value Statistics"

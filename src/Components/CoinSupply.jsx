@@ -28,7 +28,7 @@ const CoinSupply = ({ coinData, name, desp }) => {
         {data.map((val, index) => (
           <div
             key={index}
-            className="flex items-center justify-between mt-3 border-t border-slate-500"
+            className="flex items-center justify-between mt-3 border-t border-slate-500 px-2"
           >
             <div className="flex gap-2 mt-3">
               <span className=" font-bold">{Object.keys(val)[0]}</span>

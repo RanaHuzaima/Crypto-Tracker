@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import {
+  SkeletenLoadingMarket,
+  SkeletenLoadingTrending,
+} from "./SkeletenLoading";
 
 const TrendingCoin = () => {
   const [bestCoinData, setBestCoinData] = useState([]);
@@ -19,6 +23,9 @@ const TrendingCoin = () => {
   useEffect(() => {
     fetchData();
   }, []);
+  if (false) {
+    return <SkeletenLoadingTrending />;
+  }
   return (
     <>
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">

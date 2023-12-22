@@ -35,7 +35,7 @@ const MarketDetail = () => {
     fetchData();
   }, []);
 
-  if (!true) {
+  if (false) {
     return <SkeletenLoadingMarket />;
   }
   return (

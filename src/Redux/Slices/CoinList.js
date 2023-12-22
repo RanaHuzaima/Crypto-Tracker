@@ -28,7 +28,8 @@ const CoinList = createSlice({
       state.isError = false;
     });
     builder.addCase(fetchData.fulfilled, (state, action) => {
-      (state.isLoading = false), (state.data = action.payload.data.coins);
+      state.isLoading = false;
+      state.data = action.payload.data.coins;
     });
     builder.addCase(fetchData.rejected, (state, action) => {
       state.isLoading = false;

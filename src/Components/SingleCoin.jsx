@@ -6,7 +6,7 @@ import LineChart from "../Components/LineChart";
 
 const SingleCoin = ({ coin }) => {
   const sign = "$";
-  const formatNumber = (value, currencySymbol = "") => {
+  const formatNumber = (value = 0, currencySymbol = "") => {
     const absValue = Math.abs(Number(value).toFixed(2)); // Convert value to a number
 
     const trillion = 1e12;

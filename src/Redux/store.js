@@ -1,4 +1,4 @@
-import { asyncThunkCreator, configureStore } from "@reduxjs/toolkit";
+import { configureStore } from "@reduxjs/toolkit";
 import CoinListReducer from "./Slices/CoinList";
 import CoinStatsReducer from "./Slices/CoinStats";
 import SingleCoinDetailReducer from "./Slices/SingleCoinDetail";

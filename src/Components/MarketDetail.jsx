@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SkeletenLoadingMarket } from "./SkeletenLoading";
 
 const MarketDetail = () => {
   const [statsData, setStatsData] = useState([]);
@@ -33,6 +34,10 @@ const MarketDetail = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (!true) {
+    return <SkeletenLoadingMarket />;
+  }
   return (
     <>
       {setStatsData && (

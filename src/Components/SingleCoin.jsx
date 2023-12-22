@@ -5,8 +5,9 @@ import TrendingLow from "../Icons/TrendingLow";
 import LineChart from "../Components/LineChart";
 
 const SingleCoin = ({ coin }) => {
+  const sign = "$";
   const formatNumber = (value, currencySymbol = "") => {
-    const absValue = Math.abs(Number(value)); // Convert value to a number
+    const absValue = Math.abs(Number(value).toFixed(2)); // Convert value to a number
 
     const trillion = 1e12;
     const billion = 1e9;
@@ -51,7 +52,7 @@ const SingleCoin = ({ coin }) => {
             {coin.change} %
           </div>
           <div className="text-center text-lg md:text-xl font-semibold hidden md:block">
-            {formatNumber(coin.marketCap, "$")}
+            {formatNumber(coin.marketCap, sign)}
           </div>
           <div className="px-7 hidden md:block ">
             <LineChart sparklineData={coin.sparkline} change={coin.change} />

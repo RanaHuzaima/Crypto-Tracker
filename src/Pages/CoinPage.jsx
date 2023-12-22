@@ -25,12 +25,11 @@ const CoinPage = () => {
 
   return (
     <>
-      {/* <div>Hello</div> */}
       <section>
-        {SingleCoinData && (
+        {Object.keys(SingleCoinData).length > 0 && (
           <div className="max-w-screen-xl mx-auto p-4">
             <div>
-              {/* <HistoryChart sparklineData={SingleCoinData.sparkline} /> */}
+              <HistoryChart sparklineData={SingleCoinData.sparkline} />
               <CoinDetail coinData={SingleCoinData} />
               <div className=" grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
                 <CoinPriceHistory coinData={SingleCoinData} />

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CoinSupply = ({ coinData, name, desp }) => {
+const CoinSupply = ({ coinData, name }) => {
   const formattedNumber = new Intl.NumberFormat("en-US", {
     notation: "compact",
     compactDisplay: "long",
@@ -24,7 +24,10 @@ const CoinSupply = ({ coinData, name, desp }) => {
     <>
       <div className=" border border-slate-900 rounded-lg p-3">
         <span className="text-2xl font-bold">{name}</span>
-        <p className=" text-sm my-3">{desp}</p>
+        <p className=" text-sm my-3">
+          View the total and circulating supply of {coinData.name}, including
+          details on how the supplies are calculated.
+        </p>
         {data.map((val, index) => (
           <div
             key={index}

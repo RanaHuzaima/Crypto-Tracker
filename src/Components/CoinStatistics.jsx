@@ -1,6 +1,6 @@
 import React from "react";
 
-const CoinStatistics = ({ coinData, name, desp }) => {
+const CoinStatistics = ({ coinData, name }) => {
   const formattedNumber = new Intl.NumberFormat("en-US", {
     notation: "compact",
     currency: "USD",
@@ -43,7 +43,10 @@ const CoinStatistics = ({ coinData, name, desp }) => {
     <>
       <div className=" border border-slate-900 rounded-lg p-3">
         <span className="text-2xl font-bold">{name}</span>
-        <p className=" text-sm my-3">{desp}</p>
+        <p className=" text-sm my-3">
+          An overview showing the statistics of {coinData.name}, such as the
+          base and quote currency, the rank, and trading volume.
+        </p>
         {data.map((val, index) => (
           <div
             key={index}

@@ -23,8 +23,8 @@ const CoinCalculator = ({ coinData }) => {
       <div className="border border-slate-900 rounded-lg p-3">
         <span className="text-2xl font-bold">Calculator</span>
         <p className="text-sm my-3">
-          Use the calculator to convert real-time prices {coinData.name} (
-          {coinData.symbol}).
+          Use the calculator to convert real-time prices {coinData.name}{" "}
+          <small>({coinData.symbol})</small>.
         </p>
         <div>
           <div className="border border-slate-900 rounded-lg overflow-hidden">

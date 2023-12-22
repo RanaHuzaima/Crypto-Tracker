@@ -45,8 +45,9 @@ const CoinPriceHistory = ({ coinData }) => {
       <div className=" border border-slate-900 rounded-lg p-3">
         <span className="text-2xl font-bold">Price performance</span>
         <p className=" text-sm my-3">
-          This is the price performance of Bitcoin (BTC). It shows the price
-          gains and losses for each time period.
+          This is the price performance of {coinData.name}{" "}
+          <small>({coinData.symbol})</small>. It shows the price gains and
+          losses for each time period.
         </p>
         {data &&
           data.slice(firstIndex, lastIndex).map((data) => (

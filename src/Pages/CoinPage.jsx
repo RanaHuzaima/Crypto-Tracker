@@ -37,12 +37,10 @@ const CoinPage = () => {
                 <CoinStatistics
                   coinData={SingleCoinData}
                   name="Value Statistics"
-                  desp="An overview showing the statistics of Bitcoin, such as the base and quote currency, the rank, and trading volume."
                 />
                 <CoinSupply
                   coinData={SingleCoinData}
                   name="Supply information"
-                  desp="View the total and circulating supply of Bitcoin, including details on how the supplies are calculated. "
                 />
               </div>
             </div>

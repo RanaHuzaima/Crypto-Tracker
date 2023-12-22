@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import SingleCoin from "./SingleCoin";
+import { useDispatch, useSelector } from "react-redux";
+
+import { fetchData, useSelect } from "../Redux/Slices/CoinList";
 
 const CoinList = () => {
-  const [data, setData] = useState([]);
+  const { isLoading, data, isError } = useSelector(useSelect);
+
   const [page, setPage] = useState(1);
+  const dispatch = useDispatch();
   const coinPerPage = 10;
   const lastIndex = page * coinPerPage;
   const firstIndex = lastIndex - coinPerPage;
@@ -24,24 +29,13 @@ const CoinList = () => {
     }
   };
 
-  const fetchData = async () => {
-    const options = {
-      headers: {
-        "x-access-token": "",
-      },
-    };
-    const res = await fetch(
-      "https://api.coinranking.com/v2/coins?limit=100",
-      options
-    );
-    const data = await res.json();
-    setData(data.data.coins);
-  };
-
   useEffect(() => {
-    fetchData();
-  }, []);
+    dispatch(fetchData());
+  }, [dispatch]);
 
+  if (isError) {
+    return <p>Error fetching data</p>;
+  }
   return (
     <section>
       <div className="text-2xl font-bold mb-3 mt-3">Market</div>

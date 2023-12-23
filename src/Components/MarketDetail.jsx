@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { SkeletenLoadingMarket } from "./SkeletenLoading";
 import { useSelector } from "react-redux";
 import { useSelectCoinStats } from "../Redux/Slices/CoinStats";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySign";
 
 const MarketDetail = () => {
   const { isLoading, isError, CoinStatsdata } = useSelector(useSelectCoinStats);
-  const formatNumber = (value = 0, currencySymbol = "") => {
+  const { selectedSign } = useSelector(useSelectCurrencySign);
+
+  const formatNumber = (value = 0) => {
     const absValue = Math.abs(Number(value).toFixed(2)); // Convert value to a number
 
     const trillion = 1e12;
@@ -13,13 +16,13 @@ const MarketDetail = () => {
     const million = 1e6;
 
     if (absValue >= trillion) {
-      return `${currencySymbol}${(absValue / trillion).toFixed(2)} Trillion`;
+      return `${selectedSign}${(absValue / trillion).toFixed(2)} Trillion`;
     } else if (absValue >= billion) {
-      return `${currencySymbol}${(absValue / billion).toFixed(2)} Billion`;
+      return `${selectedSign}${(absValue / billion).toFixed(2)} Billion`;
     } else if (absValue >= million) {
-      return `${currencySymbol}${(absValue / million).toFixed(2)} Million`;
+      return `${selectedSign}${(absValue / million).toFixed(2)} Million`;
     } else {
-      return `${currencySymbol}${absValue.toLocaleString("en-US")}`;
+      return `${absValue.toLocaleString("en-US")}`;
     }
   };
 
@@ -38,13 +41,13 @@ const MarketDetail = () => {
           <div className="flex flex-col">
             <span className=" md:text-lg text-sm  font-bold ">Market Cap</span>
             <span className=" text-sm  font-bold ">
-              {formatNumber(CoinStatsdata.totalMarketCap, "$")}
+              {formatNumber(CoinStatsdata.totalMarketCap)}
             </span>
           </div>
           <div className=" border-l-2 pl-1 text-sm border-slate-900 flex flex-col md:pl-5">
             <span className=" md:text-lg  font-bold">Trading Volume</span>
             <span className=" text-sm  font-bold ">
-              {formatNumber(CoinStatsdata.total24hVolume, "$")}
+              {formatNumber(CoinStatsdata.total24hVolume)}
             </span>
           </div>
           <div className="border-l-2 text-sm pl-1 border-slate-900 flex flex-col md:pl-5">

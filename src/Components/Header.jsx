@@ -18,7 +18,7 @@ const Header = () => {
             Crypto Tracker
           </span>
         </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+        <div className="flex md:order-2 space-x-3 md:space-x-0">
           <button
             type="button"
             className="text-black font-medium rounded-lg text-sm px-4 py-2 text-center border border-slate-900 hover:bg-black hover:text-white "

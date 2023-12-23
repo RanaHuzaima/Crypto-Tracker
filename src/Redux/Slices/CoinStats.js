@@ -37,7 +37,7 @@ const CoinStats = createSlice({
     });
     builder.addCase(fetchStatsData.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.CoinStatsdata = action.payload.data; // Corrected line
+      state.CoinStatsdata = action.payload.data;
     });
     builder.addCase(fetchStatsData.rejected, (state, action) => {
       state.isLoading = false;

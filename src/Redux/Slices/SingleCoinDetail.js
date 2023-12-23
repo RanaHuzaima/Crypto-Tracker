@@ -1,15 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useSelectCurrencySelect } from "./CurrencySelect";
+import { useSelectTime } from "./TimeSelect";
 
 export const SingleFetchData = createAsyncThunk(
   "SingleFetchData",
-  async (id) => {
+  async (id, { getState }) => {
+    const selectedCurrency = useSelectCurrencySelect(
+      getState()
+    ).selectedCurrency;
+    const selectedTime = useSelectTime(getState()).SelectedTime;
     const options = {
       headers: {
         "x-access-token": "",
       },
     };
     const res = await fetch(
-      `https://api.coinranking.com/v2/coin/${id}`,
+      `https://api.coinranking.com/v2/coin/${id}?referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`,
       options
     );
     const data = await res.json();
@@ -45,6 +51,6 @@ const SingleCoinDetail = createSlice({
   },
 });
 
-export const useSelect = (state) => state.SingleCoinDetail;
+export const useSelectSingleCoin = (state) => state.SingleCoinDetail;
 
 export default SingleCoinDetail.reducer;

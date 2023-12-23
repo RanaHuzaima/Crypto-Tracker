@@ -1,19 +1,10 @@
 import React from "react";
+import { useFormatNumber } from "../Hooks/formatNumber";
 
 const CoinStatistics = ({ coinData, name }) => {
-  const formattedNumber = new Intl.NumberFormat("en-US", {
-    notation: "compact",
-    currency: "USD",
-    style: "currency",
-  });
-
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
   const data = [
     {
-      Price: USDollar.format(coinData.price),
+      Price: useFormatNumber(coinData.price),
       Icon: "https://cdn.coinranking.com/assets/3bc76b90ac5fa7a9d0ebb3eadd0db736.svg",
     },
     {
@@ -21,21 +12,21 @@ const CoinStatistics = ({ coinData, name }) => {
       Icon: "https://cdn.coinranking.com/assets/71798b73ccd1acf2b7cecd584238b810.svg",
     },
     {
-      "Volume 24h": formattedNumber.format(coinData["24hVolume"]),
+      "Volume 24h": useFormatNumber(coinData["24hVolume"]),
       Icon: "https://cdn.coinranking.com/assets/b78e552433d71e96938327c805491a88.svg",
     },
     {
-      "Market Cap": formattedNumber.format(coinData.marketCap),
+      "Market Cap": useFormatNumber(coinData.marketCap),
       Icon: "https://cdn.coinranking.com/assets/393c694ac4e62408003ed1617d009626.svg",
     },
     {
-      "Fully Diluted Market Cap": formattedNumber.format(
+      "Fully Diluted Market Cap": useFormatNumber(
         coinData.fullyDilutedMarketCap
       ),
       Icon: "https://cdn.coinranking.com/assets/393c694ac4e62408003ed1617d009626.svg",
     },
     {
-      "All-Time High": USDollar.format(coinData.allTimeHigh.price),
+      "All-Time High": useFormatNumber(coinData.allTimeHigh.price),
       Icon: "https://cdn.coinranking.com/assets/6dc3ae58ba61dc653ea96cfc969c581a.svg",
     },
   ];

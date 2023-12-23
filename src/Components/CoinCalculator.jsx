@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySign";
+import { useSelector } from "react-redux";
 
 const CoinCalculator = ({ coinData }) => {
   const [firstInput, setFirstInput] = useState("");
   const [secondInput, setSecondInput] = useState(0);
+  const { selectedSign } = useSelector(useSelectCurrencySign);
 
   useEffect(() => {
     if (firstInput > 0) {
@@ -17,6 +20,19 @@ const CoinCalculator = ({ coinData }) => {
   const handleFirstInput = (e) => {
     if (e.target.value >= 0) setFirstInput(Number(e.target.value));
   };
+
+  let Currency = "";
+  if (selectedSign === "$") {
+    Currency = "USD";
+  } else if (selectedSign === "€") {
+    Currency = "EUR";
+  } else if (selectedSign === "Rs") {
+    Currency = "PKR";
+  } else if (selectedSign === "₹") {
+    Currency = "INR";
+  } else {
+    Currency = selectedSign;
+  }
 
   return (
     <>
@@ -46,7 +62,7 @@ const CoinCalculator = ({ coinData }) => {
               className="px-5 py-3 w-[55%]"
             />
             <span className="border-l border-slate-900 px-5 py-3 text-lg font-bold">
-              USD
+              {Currency}
             </span>
           </div>
         </div>

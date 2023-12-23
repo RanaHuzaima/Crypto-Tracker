@@ -5,7 +5,7 @@ import { useSelectTime } from "./TimeSelect";
 
 export const fetchData = createAsyncThunk(
   "fetchData",
-  async (_, { getState }) => {
+  async (id, { getState }) => {
     const selectedCurrency = useSelectCurrencySelect(
       getState()
     ).selectedCurrency;
@@ -16,7 +16,7 @@ export const fetchData = createAsyncThunk(
       },
     };
     const res = await fetch(
-      `https://api.coinranking.com/v2/coins?limit=100&referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`,
+      `https://api.coinranking.com/v2/coin/${id}/history?referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`,
       options
     );
     const data = await res.json();
@@ -24,11 +24,11 @@ export const fetchData = createAsyncThunk(
   }
 );
 
-const CoinList = createSlice({
-  name: "CoinList",
+const CoinHistory = createSlice({
+  name: "CoinHistory",
   initialState: {
     isLoading: false,
-    data: [],
+    HistoryData: [],
     isError: false,
   },
   reducers: {},
@@ -39,7 +39,7 @@ const CoinList = createSlice({
     });
     builder.addCase(fetchData.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload.data.coins;
+      state.HistoryData = action.payload.data.history;
     });
     builder.addCase(fetchData.rejected, (state, action) => {
       state.isLoading = false;
@@ -48,6 +48,6 @@ const CoinList = createSlice({
     });
   },
 });
-export const useSelect = (state) => state.CoinList;
+export const useSelectCoinHistory = (state) => state.CoinHistory;
 
-export default CoinList.reducer;
+export default CoinHistory.reducer;

@@ -10,7 +10,6 @@ import { updateSelectedSign } from "../Redux/Slices/CurrencySign";
 const CurrencySelect = () => {
   const dispatch = useDispatch();
   const { selectedCurrency } = useSelector(useSelectCurrencySelect);
-  console.log(selectedCurrency);
 
   const handleCurrencySelect = (e) => {
     const selectedValue = e.target.value;

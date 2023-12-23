@@ -1,12 +1,8 @@
 import moment from "moment";
 import React from "react";
+import { useFormatNumber } from "../Hooks/formatNumber";
 
 const CoinDetail = ({ coinData }) => {
-  let USDollar = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  });
-
   return (
     <>
       {Object.keys(coinData).length > 0 ? (
@@ -26,7 +22,7 @@ const CoinDetail = ({ coinData }) => {
             </div>
             <div className=" flex flex-col items-end ">
               <span className=" animate-pulse font-bold text-lg">
-                {USDollar.format(coinData.price)}
+                {useFormatNumber(coinData.price)}
               </span>
               <span className=" border rounded-md px-1 text-xs border-slate-900 font-semibold">
                 {moment.unix(coinData.priceAt).fromNow()}

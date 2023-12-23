@@ -5,7 +5,6 @@ import { updateSelectedTime, useSelectTime } from "../Redux/Slices/TimeSelect";
 const TimeSelect = () => {
   const dispatch = useDispatch();
   const { SelectedTime } = useSelector(useSelectTime);
-  console.log(SelectedTime);
 
   const handleSelectedTime = (value) => {
     dispatch(updateSelectedTime(value));

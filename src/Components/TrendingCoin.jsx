@@ -3,14 +3,16 @@ import { Link } from "react-router-dom";
 import { SkeletenLoadingTrending } from "./SkeletenLoading";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStatsData, useSelectCoinStats } from "../Redux/Slices/CoinStats";
+import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelect";
 
 const TrendingCoin = () => {
   const dispatch = useDispatch();
   const { isLoading, CoinStatsdata, isError } = useSelector(useSelectCoinStats);
+  const { selectedCurrency } = useSelector(useSelectCurrencySelect);
 
   useEffect(() => {
     dispatch(fetchStatsData());
-  }, [dispatch]);
+  }, [dispatch, selectedCurrency]);
   if (isLoading) {
     return <SkeletenLoadingTrending />;
   }

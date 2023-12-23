@@ -44,6 +44,12 @@ const CurrencySelect = () => {
         >
           Rs
         </option>
+        <option
+          value="6mUvpzCc2lFo"
+          className=" text-black font-medium text-sm"
+        >
+          ₹
+        </option>
       </select>
     </>
   );

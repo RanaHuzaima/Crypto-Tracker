@@ -14,8 +14,8 @@ export const useFormatNumber = (value = 0) => {
   } else if (absValue >= billion) {
     return `${selectedSign} ${(absValue / billion).toFixed(2)} Billion`;
   } else if (absValue >= million) {
-    return `${selectedSign}0${(absValue / million).toFixed(2)} Million`;
+    return `${selectedSign} ${(absValue / million).toFixed(2)} Million`;
   } else {
-    return `${selectedSign}${absValue.toLocaleString("en-US")}`;
+    return `${selectedSign} ${absValue.toLocaleString("en-US")}`;
   }
 };

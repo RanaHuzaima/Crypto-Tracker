@@ -16,11 +16,11 @@ const MarketDetail = () => {
     const million = 1e6;
 
     if (absValue >= trillion) {
-      return `${selectedSign}${(absValue / trillion).toFixed(2)} Trillion`;
+      return `${selectedSign} ${(absValue / trillion).toFixed(2)} Trillion`;
     } else if (absValue >= billion) {
-      return `${selectedSign}${(absValue / billion).toFixed(2)} Billion`;
+      return `${selectedSign} ${(absValue / billion).toFixed(2)} Billion`;
     } else if (absValue >= million) {
-      return `${selectedSign}${(absValue / million).toFixed(2)} Million`;
+      return `${selectedSign} ${(absValue / million).toFixed(2)} Million`;
     } else {
       return `${absValue.toLocaleString("en-US")}`;
     }

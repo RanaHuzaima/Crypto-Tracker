@@ -1,15 +1,26 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchStatsData = createAsyncThunk("fetchStatsData", async () => {
-  const options = {
-    headers: {
-      "x-access-token": "",
-    },
-  };
-  const res = await fetch("https://api.coinranking.com/v2/stats", options);
-  const data = await res.json();
-  return data;
-});
+import { useSelectCurrencySelect } from "./CurrencySelect";
+
+export const fetchStatsData = createAsyncThunk(
+  "fetchStatsData",
+  async (_, { getState }) => {
+    const selectedCurrency = useSelectCurrencySelect(
+      getState()
+    ).selectedCurrency;
+    const options = {
+      headers: {
+        "x-access-token": "",
+      },
+    };
+    const res = await fetch(
+      `https://api.coinranking.com/v2/stats?referenceCurrencyUuid=${selectedCurrency}`,
+      options
+    );
+    const data = await res.json();
+    return data;
+  }
+);
 
 const CoinStats = createSlice({
   name: "CoinStats",

@@ -4,10 +4,6 @@ export const SkeletenLoadingCoinList = () => {
   return (
     <>
       <div className="animate-pulse rounded-lg overflow-hidden mt-1 border border-slate-900">
-        <div className="bg-gray-400 h-14 flex justify-between items-center">
-          <div className="bg-gray-500 h-10 w-32 ml-3 rounded-lg"></div>
-          <div className="bg-gray-500 h-10   w-52 mr-3 rounded-lg"></div>
-        </div>
         <div className="grid grid-cols-3 md:grid-cols-5 p-3 bg-gray-400 gap-2 items-center h-20 w-full">
           <div className="bg-gray-500 h-8 rounded-lg"></div>
           <div className="bg-gray-500 h-8 rounded-lg"></div>

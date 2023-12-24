@@ -6,6 +6,7 @@ import CurrencySelectReducer from "./Slices/CurrencySelect";
 import CurrencySignReducer from "./Slices/CurrencySign";
 import TimeSelectReducer from "./Slices/TimeSelect";
 import CoinHistoryReducer from "./Slices/CoinHistory";
+import AlertSliceReducer from "./Slices/AlertSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     CurrencySign: CurrencySignReducer,
     TimeSelect: TimeSelectReducer,
     CoinHistory: CoinHistoryReducer,
+    AlertSlice: AlertSliceReducer,
   },
 });
 

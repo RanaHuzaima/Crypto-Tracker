@@ -12,7 +12,7 @@ export const fetchData = createAsyncThunk(
     const selectedTime = useSelectTime(getState()).SelectedTime;
     const options = {
       headers: {
-        "x-access-token": "",
+        "x-access-token": import.meta.env.VITE_API_KEY,
       },
     };
     const res = await fetch(

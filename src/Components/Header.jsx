@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import AuthModel from "./AuthModel";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Firebase/FirebaseApp";
+import UserSidebar from "./UserSidebar";
 
 const Header = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      console.log(user);
+      if (user) setUser(user);
+      else setUser(null);
+    });
+  }, []);
+
   return (
     <nav>
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between md:mx-auto mx-3 p-4 border rounded-lg mt-2 border-slate-900">
@@ -19,12 +33,7 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0">
-          <button
-            type="button"
-            className="text-black font-medium rounded-lg text-sm px-4 py-2 text-center border border-slate-900 hover:bg-black hover:text-white "
-          >
-            Login
-          </button>
+          {user ? <UserSidebar /> : <AuthModel />}
         </div>
       </div>
     </nav>

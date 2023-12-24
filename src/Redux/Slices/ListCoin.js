@@ -9,8 +9,14 @@ export const fetchListCoinData = createAsyncThunk(
       getState()
     ).selectedCurrency;
     const selectedTime = useSelectTime(getState()).SelectedTime;
+    const options = {
+      headers: {
+        "x-access-token": import.meta.env.VITE_API_KEY,
+      },
+    };
     const res = await fetch(
-      `https://api.coinranking.com/v2/coins?limit=100&referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`
+      `https://api.coinranking.com/v2/coins?limit=100&referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`,
+      options
     );
     const data = await res.json();
     return data;

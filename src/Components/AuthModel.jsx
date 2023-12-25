@@ -12,18 +12,34 @@ import {
 } from "tw-elements-react";
 import Login from "./Login";
 import SignUp from "./SignUp";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  onAuthStateChanged,
+  signInWithPopup,
+} from "firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
 
 const AuthModel = () => {
   const [showModal, setShowModal] = useState(false);
   const [basicActive, setBasicActive] = useState("tab1");
-  
+
   const handleBasicClick = (value) => {
     if (value === basicActive) {
       return;
     }
     setBasicActive(value);
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        alert(`Sign In With Google Successful. Welcome ${res.user.email}`);
+        setShowModal(false);
+      })
+      .catch((error) => {
+        alert(`Error ${error.message}`);
+      });
   };
 
   return (
@@ -71,6 +87,21 @@ const AuthModel = () => {
                   <SignUp handleclose={setShowModal} />
                 </TETabsPane>
               </TETabsContent>
+              <hr className="my-6 border-gray-300 w-full" />
+              <button
+                type="button"
+                onClick={signInWithGoogle}
+                className="w-full block bg-white text-black hover:bg-black hover:fill-black hover:text-white   border-slate-900 border  font-semibold rounded-lg px-4 py-3"
+              >
+                <div className="flex items-center justify-center  hover:text-white">
+                  <img
+                    className="w-6 h-6"
+                    src="https://img.icons8.com/color/144/google-logo.png"
+                    alt="google-logo"
+                  />
+                  <span className="ml-4">Sign in with Google</span>
+                </div>
+              </button>
             </div>
           </TEModalContent>
         </TEModalDialog>

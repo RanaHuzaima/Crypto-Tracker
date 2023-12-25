@@ -33,7 +33,7 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0">
-          {user ? <UserSidebar /> : <AuthModel />}
+          {user ? <UserSidebar userData={user} /> : <AuthModel />}
         </div>
       </div>
     </nav>

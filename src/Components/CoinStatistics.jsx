@@ -43,8 +43,12 @@ const CoinStatistics = ({ coinData, name }) => {
             key={index}
             className="flex items-center justify-between mt-3 border-t border-slate-500 px-2"
           >
-            <div className="flex gap-2 mt-3">
-              <img src={val[Object.keys(val)[1]]} alt="icon" />
+            <div className="flex gap-2 mt-3 items-center justify-center">
+              <img
+                src={val[Object.keys(val)[1]]}
+                className="w-6 h-6"
+                alt="icon"
+              />
               <span className=" font-bold">{Object.keys(val)[0]}</span>
             </div>
             <span className="mt-3 font-semibold">

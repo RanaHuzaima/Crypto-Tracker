@@ -12,7 +12,7 @@ const CoinDetail = ({ coinData }) => {
               <img
                 src={coinData.iconUrl}
                 alt={coinData.uuid}
-                className=" rounded-full w-16"
+                className=" rounded-full w-16 h-16"
               />
               <h1 className=" text-2xl font-bold">{coinData.name}</h1>
               <small>({coinData.symbol})</small>

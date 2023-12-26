@@ -22,7 +22,7 @@ const CurrencySelect = () => {
       <select
         value={selectedCurrency}
         name="CurrencySelect"
-        className=" text-black font-medium rounded-lg text-sm px-1 py-2 text-center border border-slate-900"
+        className=" text-black font-medium rounded-lg text-sm md:px-1 md:py-2 text-center border border-slate-900"
         onChange={(e) => handleCurrencySelect(e)}
       >
         <option

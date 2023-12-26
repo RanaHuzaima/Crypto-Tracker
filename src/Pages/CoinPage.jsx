@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from "react";
-import HistoryChart from "../Components/HistoryChart";
-import CoinDetail from "../Components/CoinDetail";
+import React, { useEffect, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import CoinStatistics from "../Components/CoinStatistics";
-import CoinSupply from "../Components/CoinSupply";
-import CoinPriceHistory from "../Components/CoinPriceHistory";
-import CoinCalculator from "../Components/CoinCalculator";
+import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 import { useSelectTime } from "../Redux/Slices/TimeSelectSlice.js";
 import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelectSlice.js";
 import {
   fetchSingleCoinDetail,
   fetchSingleCoinHistory,
 } from "../Hooks/FetchData.js";
-import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { SkeletenLoadingSingleCoin } from "../Components/SkeletenLoading.jsx";
+
+// Lazy-loaded components
+const HistoryChart = lazy(() => import("../Components/HistoryChart"));
+const CoinDetail = lazy(() => import("../Components/CoinDetail"));
+const CoinPriceHistory = lazy(() => import("../Components/CoinPriceHistory"));
+const CoinCalculator = lazy(() => import("../Components/CoinCalculator"));
+const CoinStatistics = lazy(() => import("../Components/CoinStatistics"));
+const CoinSupply = lazy(() => import("../Components/CoinSupply"));
 
 const CoinPage = () => {
   const { id } = useParams();
@@ -42,7 +45,13 @@ const CoinPage = () => {
   }, [id]);
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <div className="max-w-screen-xl mx-auto p-4">
+          <SkeletenLoadingSingleCoin />
+        </div>
+      </>
+    );
   }
 
   if (error) {
@@ -59,25 +68,27 @@ const CoinPage = () => {
         {SingleCoinData && (
           <div className="max-w-screen-xl mx-auto p-4">
             <div>
-              <HistoryChart sparklineData={SingleCoinData.sparkline} />
-              <CoinDetail coinData={SingleCoinData} />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
-                {HistoryData && (
-                  <CoinPriceHistory
+              <Suspense fallback={<p>Loading...</p>}>
+                <HistoryChart sparklineData={SingleCoinData.sparkline} />
+                <CoinDetail coinData={SingleCoinData} />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
+                  {HistoryData && (
+                    <CoinPriceHistory
+                      coinData={SingleCoinData}
+                      HistoryData={HistoryData}
+                    />
+                  )}
+                  <CoinCalculator coinData={SingleCoinData} />
+                  <CoinStatistics
                     coinData={SingleCoinData}
-                    HistoryData={HistoryData}
+                    name="Value Statistics"
                   />
-                )}
-                <CoinCalculator coinData={SingleCoinData} />
-                <CoinStatistics
-                  coinData={SingleCoinData}
-                  name="Value Statistics"
-                />
-                <CoinSupply
-                  coinData={SingleCoinData}
-                  name="Supply Information"
-                />
-              </div>
+                  <CoinSupply
+                    coinData={SingleCoinData}
+                    name="Supply Information"
+                  />
+                </div>
+              </Suspense>
             </div>
           </div>
         )}

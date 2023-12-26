@@ -70,10 +70,10 @@ const CoinList = () => {
     <>
       <div className="mb-3 mt-3 flex justify-between items-center">
         <span className="text-2xl font-bold">Market</span>
-        <div className="flex gap-2">
+        <div className="flex md:gap-2 gap-1">
           <input
             type="search"
-            className="border border-slate-900 rounded-lg px-3 py-2 outline-none font-medium text-lg w-36 md:w-full"
+            className="border border-slate-900 rounded-lg px-1 py-1 md:px-3 md:py-2 outline-none font-medium text-lg w-36 md:w-full"
             placeholder="Coin Name"
             pattern="[A-Za-z]*"
             value={search}

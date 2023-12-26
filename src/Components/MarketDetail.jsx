@@ -56,26 +56,26 @@ const MarketDetail = () => {
   return (
     <>
       {CoinStatsdata && (
-        <section className=" flex md:gap-5 p-3 gap-2 items-center justify-between md:justify-start border border-slate-900 rounded-lg">
+        <section className=" flex md:gap-4 p-3 gap-[2px] items-center justify-between md:justify-start border border-slate-900 rounded-lg">
           <div className="flex flex-col">
             <span className=" md:text-lg text-sm  font-bold ">Market Cap</span>
             <span className=" text-sm  font-bold ">
               {formatNumber(CoinStatsdata.totalMarketCap)}
             </span>
           </div>
-          <div className=" border-l-2 pl-1 text-sm border-slate-900 flex flex-col md:pl-5">
+          <div className=" border-l-2 text-sm pl-2 border-slate-900 flex flex-col">
             <span className=" md:text-lg  font-bold">Trading Volume</span>
             <span className=" text-sm  font-bold ">
               {formatNumber(CoinStatsdata.total24hVolume)}
             </span>
           </div>
-          <div className="border-l-2 text-sm pl-1 border-slate-900 flex flex-col md:pl-5">
+          <div className="border-l-2 text-sm pl-2 border-slate-900 flex flex-col">
             <span className=" md:text-lg  font-bold">All coins</span>
             <span className=" text-sm  font-bold ">
               {formatNumber(CoinStatsdata.totalCoins)}
             </span>
           </div>
-          <div className="border-l-2 pl-5 border-slate-900 flex flex-col ">
+          <div className="border-l-2 pl-2 border-slate-900 flex flex-col ">
             <span className=" hidden md:block md:text-lg  font-bold">
               Total Exchanges
             </span>
@@ -83,7 +83,7 @@ const MarketDetail = () => {
               {CoinStatsdata.totalExchanges}
             </span>
           </div>
-          <div className="border-l-2 pl-5 border-slate-900 flex flex-col ">
+          <div className="border-l-2 pl-2 border-slate-900 flex flex-col ">
             <span className=" hidden md:block md:text-lg  font-bold">
               BTC Dominance
             </span>

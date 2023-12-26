@@ -1,7 +1,39 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler,
+  Legend
+);
+
 const LineChart = ({ sparklineData, change }) => {
+  useEffect(() => {
+    return () => {
+      // Cleanup: Destroy the chart instance when the component unmounts
+      const chartInstance = document.getElementById("line-chart");
+      if (chartInstance) {
+        chartInstance.chart.destroy();
+      }
+    };
+  }, []);
+
   const data = {
     labels: Array.from({ length: sparklineData.length }, (_, i) => i + 1),
     datasets: [
@@ -42,6 +74,7 @@ const LineChart = ({ sparklineData, change }) => {
     },
     scales: {
       x: {
+        type: "category", // Add this line to specify the scale type
         display: false,
       },
       y: {

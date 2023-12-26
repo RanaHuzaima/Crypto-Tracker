@@ -6,63 +6,68 @@ import CoinStatistics from "../Components/CoinStatistics";
 import CoinSupply from "../Components/CoinSupply";
 import CoinPriceHistory from "../Components/CoinPriceHistory";
 import CoinCalculator from "../Components/CoinCalculator";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelectTime } from "../Redux/Slices/TimeSelectSlice.js";
+import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelectSlice.js";
 import {
-  SingleFetchData,
-  useSelectSingleCoin,
-} from "../Redux/Slices/SingleCoinDetail";
-import { useSelectCoinHistory, fetchData } from "../Redux/Slices/CoinHistory";
+  fetchSingleCoinDetail,
+  fetchSingleCoinHistory,
+} from "../Hooks/FetchData.js";
+import { useQuery } from "@tanstack/react-query";
+import { useSelector } from "react-redux";
 
 const CoinPage = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
-  const { isError, SingleCoinData } = useSelector(useSelectSingleCoin);
-  const { isLoading, HistoryData } = useSelector(useSelectCoinHistory);
+  const { selectedTime } = useSelector(useSelectTime);
+  const { selectedCurrency } = useSelector(useSelectCurrencySelect);
 
-  const [reloadCountdown, setReloadCountdown] = useState(null);
+  const {
+    isLoading,
+    error,
+    data: SingleCoinData,
+    refetch,
+  } = useQuery({
+    queryKey: ["SingleCoinData", id, selectedCurrency, selectedTime],
+    queryFn: () => fetchSingleCoinDetail(id, selectedTime, selectedCurrency),
+    staleTime: 10000,
+  });
+
+  const { data: HistoryData } = useQuery({
+    queryKey: ["HistoryData", id, selectedCurrency, selectedTime],
+    queryFn: () => fetchSingleCoinHistory(id, selectedTime, selectedCurrency),
+    staleTime: 10000,
+  });
 
   useEffect(() => {
-    dispatch(SingleFetchData(id));
-    dispatch(fetchData(id));
-  }, [dispatch, id]);
-
-  useEffect(() => {
-    if (isError) {
-      <div className="max-w-screen-xl mx-auto p-4 bg-red-200 text-red-800">
-        <p>
-          During the API call, an unexpected error occurred. Don't worry; the
-          page will reload 🔄 automatically after 3 seconds.
-        </p>
-      </div>;
-      const countdown = setTimeout(() => {
-        window.location.reload();
-      }, 3000);
-      setReloadCountdown(countdown);
-    }
-    return () => {
-      if (reloadCountdown) {
-        clearTimeout(reloadCountdown);
-      }
-    };
-  }, [isError, reloadCountdown]);
+    refetch();
+  }, [id]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
+  if (error) {
+    return (
+      <p className="text-center text-2xl font-bold">
+        Error Fetching Data: {error.message} <br /> Please Reload Again
+      </p>
+    );
+  }
+
   return (
     <>
       <section>
-        {Object.keys(SingleCoinData).length > 0 && (
+        {SingleCoinData && (
           <div className="max-w-screen-xl mx-auto p-4">
             <div>
               <HistoryChart sparklineData={SingleCoinData.sparkline} />
               <CoinDetail coinData={SingleCoinData} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
-                <CoinPriceHistory
-                  coinData={SingleCoinData}
-                  HistoryData={HistoryData}
-                />
+                {HistoryData && (
+                  <CoinPriceHistory
+                    coinData={SingleCoinData}
+                    HistoryData={HistoryData}
+                  />
+                )}
                 <CoinCalculator coinData={SingleCoinData} />
                 <CoinStatistics
                   coinData={SingleCoinData}

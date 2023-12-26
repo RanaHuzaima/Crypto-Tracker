@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SkeletenLoadingMarket } from "./SkeletenLoading";
 import { useSelector } from "react-redux";
-import { useSelectCoinStats } from "../Redux/Slices/CoinStats";
-import { useSelectCurrencySign } from "../Redux/Slices/CurrencySign";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySignSlice.js";
+import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelectSlice.js";
+import { fetchStatsData } from "../Hooks/FetchData.js";
+
+import { useQuery } from "@tanstack/react-query";
 
 const MarketDetail = () => {
-  const { isLoading, isError, CoinStatsdata } = useSelector(useSelectCoinStats);
   const { selectedSign } = useSelector(useSelectCurrencySign);
+  const { selectedCurrency } = useSelector(useSelectCurrencySelect);
+
+  const {
+    isLoading,
+    error,
+    data: CoinStatsdata,
+    refetch,
+  } = useQuery({
+    queryKey: ["fetchStatsData", selectedCurrency],
+    queryFn: () => fetchStatsData(selectedCurrency),
+    staleTime: 10000,
+  });
 
   const formatNumber = (value = 0) => {
     const absValue = Math.abs(Number(value).toFixed(2)); // Convert value to a number
@@ -25,13 +39,18 @@ const MarketDetail = () => {
       return `${absValue.toLocaleString("en-US")}`;
     }
   };
+  useEffect(() => {
+    refetch();
+  }, [useSelectCurrencySelect, refetch]);
 
   if (isLoading) {
     return <SkeletenLoadingMarket />;
   }
-  if (isError) {
+  if (error) {
     return (
-      <p className=" text-center text-2xl font-bold">Error Fetching Data</p>
+      <p className=" text-center text-2xl font-bold">
+        Error Fetching Data: {error.message}
+      </p>
     );
   }
   return (
@@ -53,7 +72,7 @@ const MarketDetail = () => {
           <div className="border-l-2 text-sm pl-1 border-slate-900 flex flex-col md:pl-5">
             <span className=" md:text-lg  font-bold">All coins</span>
             <span className=" text-sm  font-bold ">
-              {CoinStatsdata.totalCoins}
+              {formatNumber(CoinStatsdata.totalCoins)}
             </span>
           </div>
           <div className="border-l-2 pl-5 border-slate-900 flex flex-col ">

@@ -33,8 +33,7 @@ const Login = ({ handleclose }) => {
             type="email"
             placeholder="Enter Email Address"
             className="w-full px-4 py-3 text-black rounded-lg bg-gray-200 mt-2 border focus:border-slate-900 focus:bg-white focus:outline-none"
-            autofocus
-            autocomplete
+            autoFocus
             required
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
@@ -46,7 +45,7 @@ const Login = ({ handleclose }) => {
           <input
             type="password"
             placeholder="Enter Password"
-            minlength="6"
+            minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900
 focus:bg-white focus:outline-none"
             required

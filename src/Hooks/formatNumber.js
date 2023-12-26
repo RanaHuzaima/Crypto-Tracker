@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { useSelectCurrencySign } from "../Redux/Slices/CurrencySign";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySignSlice";
 
 export const useFormatNumber = (value = 0) => {
   const { selectedSign } = useSelector(useSelectCurrencySign);

@@ -1,27 +1,26 @@
 import moment from "moment";
 import React, { useState } from "react";
 import { useFormatNumber } from "../Hooks/formatNumber";
+import Pagination from "./Pagination";
 
 const CoinPriceHistory = ({ coinData, HistoryData }) => {
   const [page, setPage] = useState(1);
   const indexperpage = 5;
-  const lastIndex = page * indexperpage;
-  const firstIndex = lastIndex - indexperpage;
-  const npage = Math.ceil(HistoryData.length / indexperpage);
-  const number = [...Array(npage + 1).keys()].slice(1);
 
-  const HandelNextPage = () => {
-    if (page !== npage) {
-      setPage(page + 1);
-    }
-  };
-  const HandelPrevPage = () => {
+  const prevPage = () => {
     if (page !== 1) {
       setPage(page - 1);
     }
   };
-  const HandelchangePage = (n) => {
-    setPage(n);
+
+  const changePage = (newPage) => {
+    setPage(newPage);
+  };
+
+  const nextPage = () => {
+    if (page < Math.ceil(HistoryData.length / indexperpage)) {
+      setPage(page + 1);
+    }
   };
 
   return (
@@ -35,7 +34,10 @@ const CoinPriceHistory = ({ coinData, HistoryData }) => {
             losses for each time period.
           </p>
           {HistoryData &&
-            HistoryData.slice(firstIndex, lastIndex).map((data) => (
+            HistoryData.slice(
+              (page - 1) * indexperpage,
+              page * indexperpage
+            ).map((data) => (
               <div
                 key={data.timestamp}
                 className={`flex items-center justify-between mt-3 border-slate-500 border rounded-lg p-2 ${
@@ -55,35 +57,13 @@ const CoinPriceHistory = ({ coinData, HistoryData }) => {
               </div>
             ))}
           <div className=" mt-2">
-            <ul className="flex items-center gap-2 justify-center">
-              <li
-                onClick={HandelPrevPage}
-                className={`border rounded-lg cursor-pointer px-2 bg-[#126BFF] py-1 text-white ${
-                  page == 1 ? " hidden" : " block"
-                }`}
-              >
-                Prev
-              </li>
-              {number.slice(0, 5).map((n, i) => (
-                <li
-                  key={i}
-                  className={`border rounded-lg cursor-pointer px-3 py-1 ${
-                    page == n ? " bg-gray-400 " : "border-gray-500"
-                  }`}
-                  onClick={() => HandelchangePage(n)}
-                >
-                  {n}
-                </li>
-              ))}
-              <li
-                className={`border rounded-lg bg-[#126BFF] text-white cursor-pointer px-2 py-1 ${
-                  page < 5 ? " block" : " hidden"
-                }`}
-                onClick={HandelNextPage}
-              >
-                Next
-              </li>
-            </ul>
+            <Pagination
+              page={page}
+              totalPages={6}
+              prevPage={prevPage}
+              changePage={changePage}
+              nextPage={nextPage}
+            />
           </div>
         </div>
       )}

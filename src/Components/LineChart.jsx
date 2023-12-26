@@ -42,15 +42,15 @@ const LineChart = ({ sparklineData, change }) => {
     },
     scales: {
       x: {
-        display: false, // Hide x-axis labels
+        display: false,
       },
       y: {
-        display: false, // Hide y-axis labels
+        display: false,
       },
     },
-    responsive: true, // Prevents automatic resizing
+    responsive: true,
     tooltips: {
-      enabled: false, // Hide tooltips
+      enabled: false,
     },
   };
 

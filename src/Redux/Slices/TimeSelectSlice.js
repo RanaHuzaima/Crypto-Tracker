@@ -3,11 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const TimeSelect = createSlice({
   name: "TimeSelect",
   initialState: {
-    SelectedTime: "24h",
+    selectedTime: "24h",
   },
   reducers: {
     updateSelectedTime: (state, action) => {
-      state.SelectedTime = action.payload;
+      state.selectedTime = action.payload;
     },
   },
 });

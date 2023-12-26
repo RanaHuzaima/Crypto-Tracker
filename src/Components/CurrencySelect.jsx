@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateItem,
   useSelectCurrencySelect,
-} from "../Redux/Slices/CurrencySelect";
+} from "../Redux/Slices/CurrencySelectSlice";
 
-import { updateSelectedSign } from "../Redux/Slices/CurrencySign";
+import { updateSelectedSign } from "../Redux/Slices/CurrencySignSlice";
 
 const CurrencySelect = () => {
   const dispatch = useDispatch();

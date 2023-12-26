@@ -59,11 +59,11 @@ const HistoryChart = ({ sparklineData }) => {
             0,
             ctx.chart.height
           );
-          gradient.addColorStop(0.3, "rgb(18,107,255)");
+          gradient.addColorStop(0.3, "rgba(18, 109, 255, 0.514)");
           gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
           return gradient;
         },
-        borderColor: "rgb(18,107,255)",
+        borderColor: "rgba(18, 109, 255, 0.61)",
         borderWidth: 2,
         pointColor: "#fff",
         pointRadius: 3,

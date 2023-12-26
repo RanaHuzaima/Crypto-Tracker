@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelectCurrencySign } from "../Redux/Slices/CurrencySign";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySignSlice.js";
 import { useSelector } from "react-redux";
 
 const CoinCalculator = ({ coinData }) => {

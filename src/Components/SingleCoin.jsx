@@ -38,8 +38,10 @@ const SingleCoin = ({ coin }) => {
           <div className="text-center sm:text-lg md:text-xl font-semibold hidden md:block">
             {useFormatNumber(coin.marketCap)}
           </div>
-          <div className="px-7 hidden md:block ">
-            <LineChart sparklineData={coin.sparkline} change={coin.change} />
+          <div className={`px-7 ${"hidden md:flex lg:flex"}`}>
+            <div className="mx-auto w-36">
+              <LineChart sparklineData={coin.sparkline} change={coin.change} />
+            </div>
           </div>
         </div>
       </Link>

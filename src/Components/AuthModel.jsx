@@ -60,8 +60,8 @@ const AuthModel = () => {
       {/* <!-- Modal --> */}
       <TEModal show={showModal} setShow={setShowModal}>
         <TEModalDialog centered className="">
-          <TEModalContent className=" flex items-center justify-center">
-            <div className="mb-3 w-[80%]">
+          <TEModalContent className=" flex items-center justify-center w-[75%]">
+            <div className="mb-3 md:w-[80%]">
               <TETabs justify>
                 <TETabsItem
                   onClick={() => handleBasicClick("tab1")}

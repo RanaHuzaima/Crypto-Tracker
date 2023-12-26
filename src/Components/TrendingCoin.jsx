@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { SkeletenLoadingTrending } from "./SkeletenLoading";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchStatsData, useSelectCoinStats } from "../Redux/Slices/CoinStats";
-import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelect";
+import { useSelector } from "react-redux";
+
+import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelectSlice.js";
+import { useQuery } from "@tanstack/react-query";
+import { fetchStatsData } from "../Hooks/FetchData.js";
 
 const TrendingCoin = () => {
-  const dispatch = useDispatch();
-  const { isLoading, CoinStatsdata, isError } = useSelector(useSelectCoinStats);
   const { selectedCurrency } = useSelector(useSelectCurrencySelect);
 
+  const {
+    isLoading,
+    error,
+    data: CoinStatsdata,
+    refetch,
+  } = useQuery({
+    queryKey: ["TrendingCoin", selectedCurrency],
+    queryFn: () => fetchStatsData(selectedCurrency),
+    staleTime: 10000,
+  });
+
   useEffect(() => {
-    dispatch(fetchStatsData());
-  }, [dispatch, selectedCurrency]);
+    refetch();
+  }, []);
   if (isLoading) {
     return <SkeletenLoadingTrending />;
   }
-  if (isError) {
+  if (error) {
     return (
       <p className=" text-center text-2xl font-bold">Error Fetching Data</p>
     );

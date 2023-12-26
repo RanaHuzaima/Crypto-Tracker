@@ -41,8 +41,7 @@ const SignUp = ({ handleclose }) => {
             type="email"
             placeholder="Enter Email Address"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900 focus:bg-white focus:outline-none"
-            autofocus
-            autocomplete
+            autoFocus
             required
             value={signupEmail}
             onChange={(e) => setSignupEmail(e.target.value)}
@@ -54,7 +53,7 @@ const SignUp = ({ handleclose }) => {
           <input
             type="password"
             placeholder="Enter Password"
-            minlength="6"
+            minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900
                 focus:bg-white focus:outline-none"
             required
@@ -67,7 +66,7 @@ const SignUp = ({ handleclose }) => {
           <input
             type="password"
             placeholder="Enter Confirm Password"
-            minlength="6"
+            minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900
                 focus:bg-white focus:outline-none"
             required

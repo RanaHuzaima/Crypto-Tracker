@@ -1,10 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateSelectedTime, useSelectTime } from "../Redux/Slices/TimeSelect";
+import {
+  updateSelectedTime,
+  useSelectTime,
+} from "../Redux/Slices/TimeSelectSlice";
 
 const TimeSelect = () => {
   const dispatch = useDispatch();
-  const { SelectedTime } = useSelector(useSelectTime);
+  const { selectedTime } = useSelector(useSelectTime);
 
   const handleSelectedTime = (value) => {
     dispatch(updateSelectedTime(value));
@@ -12,7 +15,7 @@ const TimeSelect = () => {
   return (
     <>
       <select
-        value={SelectedTime}
+        value={selectedTime}
         onChange={(e) => handleSelectedTime(e.target.value)}
         name="TimeSelect"
         className=" text-black font-medium rounded-lg text-sm px-1 py-2 text-center border border-slate-900"

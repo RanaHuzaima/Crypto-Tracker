@@ -4,7 +4,7 @@ const Pagination = ({ page, totalPages, prevPage, nextPage, changePage }) => {
   return (
     <ul className="flex items-center justify-center gap-2 mt-4 mb-2 flex-wrap">
       <li
-        className={`border px-3 py-1 rounded-lg border-slate-900 ${
+        className={`border px-2 py-1 md:px-3 md:py-1 rounded-lg border-slate-900 ${
           page > 1 ? "block" : "hidden"
         } cursor-pointer`}
         onClick={prevPage}
@@ -13,9 +13,10 @@ const Pagination = ({ page, totalPages, prevPage, nextPage, changePage }) => {
       </li>
       {[...Array(totalPages)].map((_, i) => (
         <li
-          className={`border px-3 py-1 rounded-lg border-slate-900 ${
-            page === i + 1 ? "bg-gray-300" : ""
-          } cursor-pointer`}
+          className={`border px-2 py-1
+           md:px-3 md:py-1 rounded-lg border-slate-900 ${
+             page === i + 1 ? "bg-gray-300" : ""
+           } cursor-pointer`}
           key={i}
           onClick={() => changePage(i + 1)}
         >
@@ -23,7 +24,7 @@ const Pagination = ({ page, totalPages, prevPage, nextPage, changePage }) => {
         </li>
       ))}
       <li
-        className={`border px-3 py-1 rounded-lg border-slate-900 ${
+        className={`border px-2 py-1 md:px-3 md:py-1 rounded-lg border-slate-900 ${
           page < totalPages ? "block" : "hidden"
         } cursor-pointer`}
         onClick={nextPage}

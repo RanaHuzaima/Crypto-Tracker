@@ -1,26 +1,21 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../Firebase/FirebaseApp";
+import { useAuth } from "../Context/AuthContext";
 
 const Login = ({ handleclose }) => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const { loginAction } = useAuth();
 
-  const HandleSubmit = async (e) => {
+  const HandleSubmit = (e) => {
     e.preventDefault();
     if (!loginEmail || !loginPassword) {
       alert("Please fill all the Fields");
-    }
-
-    try {
-      const result = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      alert(`Login Successful, Welcome ${result.user.email}`);
-    } catch (error) {
-      alert(`Error ${error.message}`);
+    } else {
+      loginAction(loginEmail, loginPassword);
+      handleclose(false);
+      return;
     }
   };
 
@@ -28,12 +23,16 @@ const Login = ({ handleclose }) => {
     <>
       <form className="mt-6" onSubmit={HandleSubmit}>
         <div>
-          <label className="block text-gray-700">Email Address</label>
+          <label for="email" className="block text-gray-700">
+            Email Address
+          </label>
           <input
             type="email"
+            id="email"
             placeholder="Enter Email Address"
             className="w-full px-4 py-3 text-black rounded-lg bg-gray-200 mt-2 border focus:border-slate-900 focus:bg-white focus:outline-none"
             autoFocus
+            autocomplete="username"
             required
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
@@ -41,9 +40,13 @@ const Login = ({ handleclose }) => {
         </div>
 
         <div className="mt-4">
-          <label className="block text-gray-700">Password</label>
+          <label for="password" className="block text-gray-700">
+            Password
+          </label>
           <input
             type="password"
+            id="password"
+            autocomplete="current-password"
             placeholder="Enter Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900

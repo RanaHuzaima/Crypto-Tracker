@@ -16,19 +16,19 @@ const SingleCoin = ({ coin }) => {
         >
           <div className=" flex items-center gap-[3px] md:gap-2">
             <img
-              className=" w-6 h-6 md:w-8 md:h-8 rounded-full"
+              className=" w-5 h-5 md:w-8 md:h-8 rounded-full"
               src={coin.iconUrl}
               alt={coin.name}
             />
-            <span className=" sm:text-lg md:text-2xl font-semibold">
+            <span className=" sm:text-lg text-sm md:text-2xl font-semibold">
               {coin.name}
             </span>
           </div>
-          <div className="text-center sm:text-lg md:text-xl font-semibold">
+          <div className="text-center text-sm sm:text-lg md:text-xl font-semibold">
             {useFormatNumber(coin.price)}
           </div>
           <div
-            className={` sm:text-lg md:text-xl font-semibold flex gap-1 justify-center ${
+            className={` sm:text-lg text-sm md:text-xl font-semibold flex gap-1 justify-center ${
               coin.change > 0 ? " text-green-500" : "text-red-500"
             }`}
           >

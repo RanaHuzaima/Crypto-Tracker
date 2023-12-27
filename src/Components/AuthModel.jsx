@@ -32,6 +32,10 @@ const AuthModel = () => {
 
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
+    if (auth.currentUser) {
+      setShowModal(false);
+      return;
+    }
     signInWithPopup(auth, googleProvider)
       .then((res) => {
         alert(`Sign In With Google Successful. Welcome ${res.user.email}`);

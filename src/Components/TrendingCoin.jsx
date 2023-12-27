@@ -47,9 +47,11 @@ const TrendingCoin = () => {
                     <img
                       src={coins.iconUrl}
                       alt="coin-img"
-                      className=" rounded-full h-8 w-8"
+                      className=" rounded-full w-6 h-6 md:h-8 md:w-8"
                     />
-                    <p className="text-xl font-semibold">{coins.name}</p>
+                    <p className="text-lg md:text-xl font-semibold">
+                      {coins.name}
+                    </p>
                   </div>
                 </Link>
               </div>
@@ -66,9 +68,11 @@ const TrendingCoin = () => {
                     <img
                       src={coins.iconUrl}
                       alt="coin-img"
-                      className=" rounded-full h-8 w-8"
+                      className=" rounded-full w-6 h-6 md:h-8 md:w-8"
                     />
-                    <p className="text-xl font-semibold">{coins.name}</p>
+                    <p className="text-lg md:text-xl font-semibold">
+                      {coins.name}
+                    </p>
                   </div>
                 </Link>
               </div>

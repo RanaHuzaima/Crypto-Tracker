@@ -56,7 +56,7 @@ const MarketDetail = () => {
   return (
     <>
       {CoinStatsdata && (
-        <section className=" flex md:gap-4 p-3 gap-[2px] items-center justify-between md:justify-start border border-slate-900 rounded-lg">
+        <section className=" flex md:gap-4 p-3 gap-2 items-center justify-between md:justify-start border border-slate-900 rounded-lg">
           <div className="flex flex-col">
             <span className=" md:text-lg text-sm  font-bold ">Market Cap</span>
             <span className=" text-sm  font-bold ">
@@ -69,7 +69,7 @@ const MarketDetail = () => {
               {formatNumber(CoinStatsdata.total24hVolume)}
             </span>
           </div>
-          <div className="border-l-2 text-sm pl-2 border-slate-900 flex flex-col">
+          <div className="border-l-2 text-sm pl-2 border-slate-900 hidden md:flex flex-col">
             <span className=" md:text-lg  font-bold">All coins</span>
             <span className=" text-sm  font-bold ">
               {formatNumber(CoinStatsdata.totalCoins)}

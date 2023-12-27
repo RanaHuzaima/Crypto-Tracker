@@ -18,7 +18,7 @@ const TimeSelect = () => {
         value={selectedTime}
         onChange={(e) => handleSelectedTime(e.target.value)}
         name="TimeSelect"
-        className=" text-black font-medium rounded-lg text-sm md:px-1 md:py-2 text-center border border-slate-900"
+        className=" text-black hidden md:block font-medium rounded-lg text-sm md:px-1 md:py-2 text-center border border-slate-900"
       >
         <option value="24h" className=" text-black font-medium text-sm">
           24h

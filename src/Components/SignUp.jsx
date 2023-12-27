@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
+import { useAuth } from "../Context/AuthContext";
 
 const SignUp = ({ handleclose }) => {
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
+
+  const { SignUpAction } = useAuth();
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
@@ -17,18 +20,9 @@ const SignUp = ({ handleclose }) => {
       if (signupPassword !== signupConfirmPassword) {
         alert("Passwords do not match");
       } else {
-        try {
-          const result = await createUserWithEmailAndPassword(
-            auth,
-            signupEmail,
-            signupPassword
-          );
-
-          handleclose(false);
-          alert(`Sign up Successful ${result.user.email}`);
-        } catch (error) {
-          alert(`Error ${error.message}`);
-        }
+        SignUpAction(signupEmail, signupPassword);
+        handleclose(false);
+        return;
       }
     }
   };
@@ -36,12 +30,16 @@ const SignUp = ({ handleclose }) => {
     <>
       <form className="mt-6" onSubmit={HandleSubmit}>
         <div>
-          <label className="block text-gray-700">Email Address</label>
+          <label for="signupEmail" className="block text-gray-700">
+            Email Address
+          </label>
           <input
             type="email"
+            id="signupEmail"
             placeholder="Enter Email Address"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900 focus:bg-white focus:outline-none"
             autoFocus
+            autoComplete="email"
             required
             value={signupEmail}
             onChange={(e) => setSignupEmail(e.target.value)}
@@ -49,9 +47,13 @@ const SignUp = ({ handleclose }) => {
         </div>
 
         <div className="mt-4">
-          <label className="block text-gray-700">Password</label>
+          <label for="signupPassword" className="block text-gray-700">
+            Password
+          </label>
           <input
             type="password"
+            id="signupPassword"
+            autocomplete="new-password"
             placeholder="Enter Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900
@@ -62,9 +64,13 @@ const SignUp = ({ handleclose }) => {
           />
         </div>
         <div className="mt-4">
-          <label className="block text-gray-700">Confirm Password</label>
+          <label for="signupConfirmPassword" className="block text-gray-700">
+            Confirm Password
+          </label>
           <input
             type="password"
+            id="signupConfirmPassword"
+            autocomplete="new-password"
             placeholder="Enter Confirm Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900

@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./Components/Header";
 import HomePage from "./Pages/HomePage";
 import CoinPage from "./Pages/CoinPage";
+import ErrorPage from "./Pages/ErrorPage";
 
 const App = () => {
   return (
@@ -14,6 +15,9 @@ const App = () => {
         </Route>
         <Route path="/coin/:id" element={<CoinPage />}>
           Coin Page
+        </Route>
+        <Route path="*" element={<ErrorPage />}>
+          Error Page
         </Route>
       </Routes>
     </BrowserRouter>

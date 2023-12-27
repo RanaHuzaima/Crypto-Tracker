@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../Firebase/FirebaseApp";
+import "/userpic.jpg";
 
 const UserSidebar = ({ userData }) => {
   const [isopen, setIsopen] = useState(false);
@@ -15,7 +16,7 @@ const UserSidebar = ({ userData }) => {
   return (
     <>
       <img
-        src={userData.photoURL}
+        src={userData.photoURL !== null ? userData.photoURL : "userpic.jpg"}
         className="w-12 h-12 rounded-full shadow-lg cursor-pointer object-contain"
         alt="User-Avatar"
         onClick={handleIsOpen}
@@ -49,9 +50,9 @@ const UserSidebar = ({ userData }) => {
                       aria-hidden="true"
                     >
                       <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
                         d="M6 18L18 6M6 6l12 12"
                       ></path>
                     </svg>
@@ -59,7 +60,11 @@ const UserSidebar = ({ userData }) => {
                 </div>
                 <div className="mt-2 px-4 flex justify-center">
                   <img
-                    src={userData.photoURL}
+                    src={
+                      userData.photoURL !== null
+                        ? userData.photoURL
+                        : "userpic.jpg"
+                    }
                     className=" w-40 h-40 rounded-full shadow-lg cursor-pointer object-contain"
                     alt="User-Avatar"
                     onClick={handleIsOpen}

@@ -1,6 +1,8 @@
-import React from "react";
-import "/404ErrorImg.gif";
+import React, { lazy, Suspense } from "react";
 import { Link } from "react-router-dom";
+
+// Use lazy to import the component asynchronously
+import("/404ErrorImg.gif");
 
 const ErrorPage = () => {
   return (

@@ -30,7 +30,7 @@ const SignUp = ({ handleclose }) => {
     <>
       <form className="mt-6" onSubmit={HandleSubmit}>
         <div>
-          <label for="signupEmail" className="block text-gray-700">
+          <label htmlFor="signupEmail" className="block text-gray-700">
             Email Address
           </label>
           <input
@@ -47,13 +47,13 @@ const SignUp = ({ handleclose }) => {
         </div>
 
         <div className="mt-4">
-          <label for="signupPassword" className="block text-gray-700">
+          <label htmlFor="signupPassword" className="block text-gray-700">
             Password
           </label>
           <input
             type="password"
             id="signupPassword"
-            autocomplete="new-password"
+            autoComplete="new-password"
             placeholder="Enter Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900
@@ -64,13 +64,16 @@ const SignUp = ({ handleclose }) => {
           />
         </div>
         <div className="mt-4">
-          <label for="signupConfirmPassword" className="block text-gray-700">
+          <label
+            htmlFor="signupConfirmPassword"
+            className="block text-gray-700"
+          >
             Confirm Password
           </label>
           <input
             type="password"
             id="signupConfirmPassword"
-            autocomplete="new-password"
+            autoComplete="new-password"
             placeholder="Enter Confirm Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900

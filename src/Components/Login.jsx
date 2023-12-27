@@ -23,7 +23,7 @@ const Login = ({ handleclose }) => {
     <>
       <form className="mt-6" onSubmit={HandleSubmit}>
         <div>
-          <label for="email" className="block text-gray-700">
+          <label htmlFor="email" className="block text-gray-700">
             Email Address
           </label>
           <input
@@ -32,7 +32,7 @@ const Login = ({ handleclose }) => {
             placeholder="Enter Email Address"
             className="w-full px-4 py-3 text-black rounded-lg bg-gray-200 mt-2 border focus:border-slate-900 focus:bg-white focus:outline-none"
             autoFocus
-            autocomplete="username"
+            autoComplete="username"
             required
             value={loginEmail}
             onChange={(e) => setLoginEmail(e.target.value)}
@@ -40,13 +40,13 @@ const Login = ({ handleclose }) => {
         </div>
 
         <div className="mt-4">
-          <label for="password" className="block text-gray-700">
+          <label htmlFor="password" className="block text-gray-700">
             Password
           </label>
           <input
             type="password"
             id="password"
-            autocomplete="current-password"
+            autoComplete="current-password"
             placeholder="Enter Password"
             minLength="6"
             className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-slate-900

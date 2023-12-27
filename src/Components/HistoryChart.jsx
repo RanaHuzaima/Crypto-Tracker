@@ -23,7 +23,7 @@ ChartJS.register(
   Legend
 );
 
-const HistoryChart = ({ sparklineData }) => {
+const HistoryChart = ({ sparklineData, change }) => {
   const options = {
     plugins: {
       legend: {
@@ -31,6 +31,7 @@ const HistoryChart = ({ sparklineData }) => {
       },
     },
     responsive: true,
+    // maintainAspectRatio: false,
     scales: {
       x: {
         grid: {
@@ -59,12 +60,16 @@ const HistoryChart = ({ sparklineData }) => {
             0,
             ctx.chart.height
           );
-          gradient.addColorStop(0.3, "rgba(18, 109, 255, 0.514)");
+          gradient.addColorStop(
+            0,
+            change > 0 ? "rgba(0, 255, 0, 0.4)" : "rgba(166, 8, 8, 0.4)"
+          );
           gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
           return gradient;
         },
-        borderColor: "rgba(18, 109, 255, 0.61)",
-        borderWidth: 2,
+        borderColor:
+          change > 0 ? "rgba(0, 255, 0, 0.4)" : "rgba(166, 8, 8, 0.4)",
+        borderWidth: 3,
         pointColor: "#fff",
         pointRadius: 3,
         pointHoverRadius: 1,

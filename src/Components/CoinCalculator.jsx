@@ -48,9 +48,9 @@ const CoinCalculator = ({ coinData }) => {
               type="number"
               value={firstInput}
               onChange={(e) => handleFirstInput(e)}
-              className="px-5 py-3 w-[55%] "
+              className="px-5 py-3 md:w-[55%] w-[50%] "
             />
-            <span className="border-l border-slate-900 px-5 py-3 font-bold text-lg">
+            <span className="border-l border-slate-900 md:px-5 px-2 py-3 font-bold text-base md:text-lg">
               {coinData.name}
             </span>
           </div>
@@ -59,9 +59,9 @@ const CoinCalculator = ({ coinData }) => {
               type="number"
               value={secondInput}
               readOnly
-              className="px-5 py-3 w-[55%]"
+              className="px-5 py-3 md:w-[55%] w-[50%]"
             />
-            <span className="border-l border-slate-900 px-5 py-3 text-lg font-bold">
+            <span className="border-l border-slate-900 md:px-5 px-2 py-3 text-base md:text-lg font-bold">
               {Currency}
             </span>
           </div>

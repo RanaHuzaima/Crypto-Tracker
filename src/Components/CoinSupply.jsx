@@ -37,7 +37,8 @@ const CoinSupply = ({ coinData, name }) => {
               <span className=" font-bold">{Object.keys(val)[0]}</span>
             </div>
             <span className="mt-3 font-semibold">
-              {val[Object.keys(val)[0]]} ({coinData.symbol})
+              {val[Object.keys(val)[0]]}
+              <small> ({coinData.symbol})</small>
             </span>
           </div>
         ))}

@@ -12,11 +12,13 @@ const CoinDetail = ({ coinData }) => {
               <img
                 src={coinData.iconUrl}
                 alt={coinData.uuid}
-                className=" rounded-full w-16 h-16"
+                className=" rounded-full w-6 h-6 md:w-16 md:h-16"
               />
-              <h1 className=" text-2xl font-bold">{coinData.name}</h1>
-              <small>({coinData.symbol})</small>
-              <span className=" border border-slate-900 rounded-md px-1">
+              <h1 className=" md:text-2xl text-lg font-bold">
+                {coinData.name}
+              </h1>
+              <small className=" hidden md:blocks">({coinData.symbol})</small>
+              <span className=" border border-slate-900 text-xs md:text-lg rounded-md px-1">
                 #{coinData.rank}
               </span>
             </div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { TERipple } from "tw-elements-react";
 
-const Button = ({ BtnText, px, py, bgColor, hoverbg, onclick }) => {
+const Button = ({ BtnText, px, py, bgColor, hoverbg, onclick = "" }) => {
   return (
     <>
       <TERipple rippleColor={`${bgColor}`}>

@@ -28,13 +28,14 @@ const HomePage = () => {
                   hoverbg={"white"}
                   onclick={"/Dashboard"}
                 />
-                <Button
-                  BtnText={"Share App"}
-                  px={5}
-                  py={2}
-                  bgColor={"white"}
-                  hoverbg={"black"}
-                />
+                <button className=" px-5 py-2 bg-white text-black hover:bg-black hover:text-white shadow-inner border border-slate-900 rounded-lg shadow-slate-400 font-bold">
+                  <a
+                    href="https://github.com/RanaHuzaima/Crypto-Tracker"
+                    target="_blank"
+                  >
+                    GitHub Link
+                  </a>
+                </button>
               </div>
             </div>
             <div className="items-center md:justify-end col-span-1 flex order-first md:order-last ">

@@ -23,7 +23,7 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 gap-8">
-          <div className=" flex items-center justify-center">
+          <div className=" items-center justify-center sm:flex  hidden">
             <ul className=" flex items-center justify-center gap-8">
               <li className=" text-lg font-semibold cursor-pointer">
                 <NavLink to={`${user ? "/Dashboard" : "/"}`}>

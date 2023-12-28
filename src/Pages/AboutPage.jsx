@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../Components/Button";
 import TimeLine from "../Components/TimeLine";
 import Team from "../Components/Team";
 
@@ -25,28 +24,11 @@ const AboutPage = () => {
                 everyone, whether you are a seasoned investor or just starting
                 your crypto journey.
               </p>
-              <div className="flex flex-col items-center gap-4 lg:flex-row">
-                <Button
-                  BtnText={"Dashboard"}
-                  px={5}
-                  py={2}
-                  bgColor={"black"}
-                  hoverbg={"white"}
-                  onclick={"/Dashboard"}
-                />
-                <Button
-                  BtnText={"Share App"}
-                  px={5}
-                  py={2}
-                  bgColor={"white"}
-                  hoverbg={"black"}
-                />
-              </div>
             </div>
             <div className="items-center justify-end hidden col-span-1 md:flex">
               <img
-                className="w-4/5 rounded-md"
-                src="https://i.ibb.co/HYq2Dmq/About-Us.gif"
+                className="w-4/5 rounded-md bg-white "
+                src="/AboutImg.webp"
                 alt="hero image"
               />
             </div>

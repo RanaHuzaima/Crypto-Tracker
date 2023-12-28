@@ -7,10 +7,10 @@ import { useAuth } from "../Context/AuthContext";
 const Header = () => {
   const { user } = useAuth();
   return (
-    <nav>
+    <nav className=" sm:px-4">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between md:mx-auto mx-3 p-4 border rounded-lg mt-2 border-slate-900">
         <Link
-          to="/"
+          to={`${user ? "/Dashboard" : "/"}`}
           className="flex items-center md:gap-3 gap-1 rtl:space-x-reverse"
         >
           <img
@@ -22,7 +22,48 @@ const Header = () => {
             Crypto Tracker
           </span>
         </Link>
-        <div className="flex md:order-2 space-x-3 md:space-x-0">
+        <div className="flex md:order-2 space-x-3 md:space-x-0 gap-8">
+          {user ? (
+            <div className=" flex items-center justify-center">
+              <ul className=" flex items-center justify-center gap-8">
+                <Link to="/Dashboard">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    Dashboard
+                  </li>
+                </Link>
+                <Link to="/About">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    About
+                  </li>
+                </Link>
+                <Link to="/Contact-us">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    Contact Us
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          ) : (
+            <div className=" flex items-center justify-center">
+              <ul className=" flex items-center justify-center gap-8">
+                <Link to="/">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    Home
+                  </li>
+                </Link>
+                <Link to="/About">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    About
+                  </li>
+                </Link>
+                <Link to="/Contact-us">
+                  <li className=" text-lg font-semibold cursor-pointer">
+                    Contact Us
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          )}
           {user ? (
             <UserSidebar userData={user} />
           ) : (
@@ -30,8 +71,8 @@ const Header = () => {
               BtnText={"Account"}
               px={3}
               py={2}
-              bgColor={"black"}
-              hoverbg={"white"}
+              bgColor={"white"}
+              hoverbg={"black"}
               onclick={"/Account"}
             />
           )}

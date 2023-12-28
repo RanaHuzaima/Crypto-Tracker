@@ -6,11 +6,7 @@ import {
 } from "tw-elements-react";
 import Login from "../Components/Login";
 import SignUp from "../Components/SignUp";
-import {
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
 import React, { useState } from "react";
 
@@ -35,28 +31,8 @@ const AccountPage = () => {
   };
   return (
     <>
-      {/* 
-  html, body{
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .break-inside {
-    -moz-column-break-inside: avoid;
-    break-inside: avoid;
-  }
-  body {
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    min-height: 100vh;
-    line-height: 1.5;
-  } */}
-
-      {/* <!-- Example --> */}
       <div className="flex max-w-screen-xl mx-auto mt-4">
-        {/* <!-- Container --> */}
         <div className="flex flex-row w-full gap-3">
-          {/* <!-- Sidebar --> */}
           <div className="hidden lg:flex flex-col justify-between bg-black lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg rounded-lg shadow-slate-600 shadow-xl">
             <div className="space-y-5">
               <h1 className=" text-white lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">
@@ -73,7 +49,6 @@ const AccountPage = () => {
             <p className="font-medium mt-4 text-white">© 2023 Crypto Tracker</p>
           </div>
 
-          {/* <!-- AccountPage --> */}
           <div className=" w-full px-10">
             <TETabs justify>
               <TETabsItem

@@ -52,7 +52,7 @@ const AuthProvider = ({ children }) => {
     });
 
     return () => unsubscribe();
-  }, [navigate]);
+  }, [user]);
 
   return (
     <AuthContext.Provider value={{ user, loginAction, SignUpAction }}>

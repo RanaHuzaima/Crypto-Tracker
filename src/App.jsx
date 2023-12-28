@@ -8,6 +8,9 @@ import HomePage from "./Pages/HomePage";
 import PrivateRoute from "./Pages/PrivateRoute";
 import AccountPage from "./Pages/AccountPage";
 import AuthProvider from "./Context/AuthContext";
+import AboutPage from "./Pages/AboutPage";
+import ContactPage from "./Pages/ContactPage";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
@@ -19,12 +22,20 @@ const App = () => {
             <Route path="/" element={<HomePage />}>
               HomePage
             </Route>
-            <Route path="/Account" element={<AccountPage />}></Route>
+            <Route path="/Account" element={<AccountPage />}>
+              Account Page
+            </Route>
+            <Route path="/About" element={<AboutPage />}>
+              About Us
+            </Route>
+            <Route path="/Contact-us" element={<ContactPage />}>
+              Contact Us
+            </Route>
             <Route element={<PrivateRoute />}>
               <Route path="/Dashboard" element={<DashboardPage />} exact>
                 Dashboard
               </Route>
-              <Route path="/coin/:id" element={<CoinPage />}>
+              <Route path="/Coin/:id" element={<CoinPage />}>
                 Coin Page
               </Route>
             </Route>
@@ -32,6 +43,7 @@ const App = () => {
               Error Page
             </Route>
           </Routes>
+          <Footer />
         </AuthProvider>
       </Router>
     </>

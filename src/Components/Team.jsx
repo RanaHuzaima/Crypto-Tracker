@@ -3,7 +3,7 @@ import React from "react";
 const Team = () => {
   return (
     <>
-      <div className="container pt-20 pb-8 md:pt-16 bg-white">
+      <div className=" pt-20 pb-8 md:pt-16 bg-white">
         <div className=" xl:max-w-6xl mx-auto px-4">
           <header className="text-center mx-auto ">
             <h2 className="mb-8 text-4xl font-extrabold leading-tight lg:text-5xl ">
@@ -154,7 +154,7 @@ const Team = () => {
                     Rana Huzaima Imtiaz
                   </p>
                   <p className="text-gray-500 leading-relaxed font-light">
-                    Team Member
+                    Front-End Developer
                   </p>
                   <div className="mt-2 mb-5 space-x-2">
                     <a

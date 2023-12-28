@@ -3,7 +3,7 @@ import React from "react";
 const TimeLine = () => {
   return (
     <>
-      <div className="container">
+      <div className="">
         <div className="flex flex-col md:grid grid-cols-9 mx-auto p-2">
           {/* left*/}
           <div className="flex flex-row-reverse md:contents">

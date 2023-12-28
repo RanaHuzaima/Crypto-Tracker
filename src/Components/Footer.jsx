@@ -29,8 +29,8 @@ const Footer = () => {
   };
   return (
     <>
-      <footer className="max-w-screen-xl mx-auto mt-4">
-        <div className="container px-6 pt-12 mx-auto  bg-gray-100 p-4 mb-2 rounded-lg shadow-[0px_2px_5px_1px_rgba(48,48,48,0.55)] py-8">
+      <footer className="max-w-screen-xl mx-auto mt-4 lg:px-0 px-3">
+        <div className=" px-6 pt-12 mx-auto  bg-gray-100 mb-2 rounded-lg shadow-[0px_2px_5px_1px_rgba(48,48,48,0.55)] py-8">
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-y-10 lg:grid-cols-4">
             <div className="sm:col-span-2">
               <h1 className="max-w-lg text-xl font-bold text-center md:text-start tracking-tight text-black xl:text-2xl ">

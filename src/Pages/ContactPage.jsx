@@ -26,10 +26,10 @@ const ContactPage = () => {
   };
   return (
     <>
-      <section className=" max-w-screen-xl mx-auto mt-4">
-        <div className="container flex flex-col mx-auto bg-white">
+      <section className=" max-w-screen-xl mx-auto mt-4 px-3">
+        <div className=" flex flex-col mx-auto bg-white">
           <div className="grid w-full grid-cols-1 my-auto mt-12 mb-8 md:grid-cols-2 xl:gap-14 md:gap-5">
-            <div className="flex flex-col justify-center col-span-1 text-center lg:text-start">
+            <div className="flex flex-col justify-center col-span-1 text-center md:text-start">
               <h1 className="mb-8 text-4xl font-extrabold leading-tight lg:text-5xl">
                 Contact Us
               </h1>
@@ -55,7 +55,7 @@ const ContactPage = () => {
             </div>
           </div>
         </div>
-        <div>
+        <div className="sm:text-start text-center">
           <div className="flex flex-col gap-3">
             <div className="col-start-2 col-span-5">
               <h2 className="text-3xl font-bold mb-6">Contact Us</h2>

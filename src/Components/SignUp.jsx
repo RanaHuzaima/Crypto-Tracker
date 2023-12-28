@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword } from "@firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
 import { useAuth } from "../Context/AuthContext";
 
-const SignUp = ({ handleclose }) => {
+const SignUp = () => {
   const [signupEmail, setSignupEmail] = useState("");
   const [signupPassword, setSignupPassword] = useState("");
   const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
@@ -21,7 +21,6 @@ const SignUp = ({ handleclose }) => {
         alert("Passwords do not match");
       } else {
         SignUpAction(signupEmail, signupPassword);
-        handleclose(false);
         return;
       }
     }

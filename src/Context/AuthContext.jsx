@@ -11,6 +11,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
+
   const loginAction = async (loginEmail, loginPassword) => {
     try {
       const result = await signInWithEmailAndPassword(
@@ -19,6 +21,7 @@ const AuthProvider = ({ children }) => {
         loginPassword
       );
       alert(`Login Successful, Welcome ${result.user.email}`);
+      navigate("/Dashboard");
     } catch (error) {
       alert(`Error ${error.message}`);
     }
@@ -32,24 +35,32 @@ const AuthProvider = ({ children }) => {
         signupPassword
       );
       alert(`Sign up Successful ${result.user.email}`);
+      navigate("/Dashboard");
     } catch (error) {
       alert(`Error ${error.message}`);
     }
   };
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      console.log(user);
-      if (user) setUser(user);
-      else setUser(null);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        navigate("/Dashboard");
+      } else {
+        setUser(null);
+      }
     });
-  }, []);
+
+    return () => unsubscribe();
+  }, [navigate]);
+
   return (
     <AuthContext.Provider value={{ user, loginAction, SignUpAction }}>
       {children}
     </AuthContext.Provider>
   );
 };
+
 export default AuthProvider;
 export const useAuth = () => {
   return useContext(AuthContext);

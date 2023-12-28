@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AuthModel from "./AuthModel";
+import Button from "./Button";
 import UserSidebar from "./UserSidebar";
 import { useAuth } from "../Context/AuthContext";
 
@@ -23,7 +23,18 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0">
-          {user ? <UserSidebar userData={user} /> : <AuthModel />}
+          {user ? (
+            <UserSidebar userData={user} />
+          ) : (
+            <Button
+              BtnText={"Account"}
+              px={3}
+              py={2}
+              bgColor={"black"}
+              hoverbg={"white"}
+              onclick={"/Account"}
+            />
+          )}
         </div>
       </div>
     </nav>

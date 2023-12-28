@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { auth } from "../Firebase/FirebaseApp";
 import { useAuth } from "../Context/AuthContext";
 
-const Login = ({ handleclose }) => {
+const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const { loginAction } = useAuth();
@@ -14,7 +14,6 @@ const Login = ({ handleclose }) => {
       alert("Please fill all the Fields");
     } else {
       loginAction(loginEmail, loginPassword);
-      handleclose(false);
       return;
     }
   };

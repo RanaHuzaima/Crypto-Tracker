@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Button from "./Button";
 import UserSidebar from "./UserSidebar";
 import { useAuth } from "../Context/AuthContext";
@@ -23,47 +23,21 @@ const Header = () => {
           </span>
         </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 gap-8">
-          {user ? (
-            <div className=" flex items-center justify-center">
-              <ul className=" flex items-center justify-center gap-8">
-                <Link to="/Dashboard">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    Dashboard
-                  </li>
-                </Link>
-                <Link to="/About">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    About
-                  </li>
-                </Link>
-                <Link to="/Contact-us">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    Contact Us
-                  </li>
-                </Link>
-              </ul>
-            </div>
-          ) : (
-            <div className=" flex items-center justify-center">
-              <ul className=" flex items-center justify-center gap-8">
-                <Link to="/">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    Home
-                  </li>
-                </Link>
-                <Link to="/About">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    About
-                  </li>
-                </Link>
-                <Link to="/Contact-us">
-                  <li className=" text-lg font-semibold cursor-pointer">
-                    Contact Us
-                  </li>
-                </Link>
-              </ul>
-            </div>
-          )}
+          <div className=" flex items-center justify-center">
+            <ul className=" flex items-center justify-center gap-8">
+              <li className=" text-lg font-semibold cursor-pointer">
+                <NavLink to={`${user ? "/Dashboard" : "/"}`}>
+                  {`${user ? "Dashboard" : "Home"}`}
+                </NavLink>
+              </li>
+              <li className=" text-lg font-semibold cursor-pointer">
+                <NavLink to="/About">About</NavLink>
+              </li>
+              <li className=" text-lg font-semibold cursor-pointer">
+                <NavLink to="/Contact-us">Contact Us</NavLink>
+              </li>
+            </ul>
+          </div>
           {user ? (
             <UserSidebar userData={user} />
           ) : (

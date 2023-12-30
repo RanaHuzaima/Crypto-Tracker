@@ -1,8 +1,3 @@
 # Crypto Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Crypto Tracker is a sleek and user-friendly application designed to keep you informed about the latest developments in the cryptocurrency market. With real-time price updates, detailed charts, and personalized portfolios, it empowers users to effortlessly monitor their favorite digital assets and make informed investment decisions. Whether you're a seasoned trader or a crypto enthusiast, Crypto Tracker is your go-to tool for staying ahead in the dynamic world of cryptocurrencies.

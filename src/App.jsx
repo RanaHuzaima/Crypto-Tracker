@@ -11,6 +11,8 @@ import AuthProvider from "./Context/AuthContext";
 import AboutPage from "./Pages/AboutPage";
 import ContactPage from "./Pages/ContactPage";
 import Footer from "./Components/Footer";
+import TermsConditionPage from "./Pages/TermsConditionPage";
+import DisclaimerPage from "./Pages/DisclaimerPage";
 
 const App = () => {
   return (
@@ -38,6 +40,12 @@ const App = () => {
               <Route path="/Coin/:id" element={<CoinPage />}>
                 Coin Page
               </Route>
+            </Route>
+            <Route path="/Term-Condition" element={<TermsConditionPage />}>
+              Term Condition Page
+            </Route>
+            <Route path="/Disclaimer" element={<DisclaimerPage />}>
+              Disclaimer
             </Route>
             <Route path="*" element={<ErrorPage />}>
               Error Page

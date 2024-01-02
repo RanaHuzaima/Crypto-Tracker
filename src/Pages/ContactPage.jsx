@@ -30,7 +30,7 @@ const ContactPage = () => {
   }, []);
   return (
     <>
-      <section className=" max-w-screen-xl mx-auto mt-4 px-3">
+      <section className=" max-w-screen-xl mx-auto px-3 sm:px-0">
         <div className=" flex flex-col mx-auto bg-white">
           <div className="grid w-full grid-cols-1 my-auto mt-12 mb-8 md:grid-cols-2 xl:gap-14 md:gap-5">
             <div className="flex flex-col justify-center col-span-1 text-center md:text-start">

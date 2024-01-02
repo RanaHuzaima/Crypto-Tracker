@@ -78,10 +78,10 @@ const Footer = () => {
               <p className=" text-black text-2xl font-extrabold ">Other Link</p>
               <ul className="flex flex-col items-center mt-5 space-y-2">
                 <li className=" text-lg font-semibold cursor-pointer">
-                  <NavLink to="/terms-conditions">Terms and Conditions</NavLink>
+                  <NavLink to="/Term-Condition">Terms and Conditions</NavLink>
                 </li>
                 <li className=" text-lg font-semibold cursor-pointer">
-                  <NavLink to="/disclaimer">Disclaimer</NavLink>
+                  <NavLink to="/Disclaimer">Disclaimer</NavLink>
                 </li>
               </ul>
             </div>

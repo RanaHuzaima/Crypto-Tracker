@@ -1,10 +1,12 @@
-import React, { lazy, Suspense } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-// Use lazy to import the component asynchronously
 import("/404ErrorImg.gif");
 
 const ErrorPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <section className="max-w-screen-xl mx-auto p-4">

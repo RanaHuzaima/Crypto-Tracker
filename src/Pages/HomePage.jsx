@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Button from "../Components/Button";
 
 const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <section className="max-w-screen-xl mx-auto">

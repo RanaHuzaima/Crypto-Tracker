@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import {
   SkeletenLoadingCoinList,
   SkeletenLoadingTrending,
@@ -10,6 +10,9 @@ const CoinList = lazy(() => import("../Components/CoinList"));
 const MarketDetail = lazy(() => import("../Components/MarketDetail"));
 
 const DashboardPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="max-w-screen-xl mx-auto p-4">

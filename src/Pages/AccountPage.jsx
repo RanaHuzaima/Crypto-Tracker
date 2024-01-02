@@ -8,7 +8,7 @@ import Login from "../Components/Login";
 import SignUp from "../Components/SignUp";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const AccountPage = () => {
   const [basicActive, setBasicActive] = useState("tab1");
@@ -29,6 +29,9 @@ const AccountPage = () => {
         alert(`Error ${error.message}`);
       });
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <div className="flex max-w-screen-xl mx-auto mt-4">

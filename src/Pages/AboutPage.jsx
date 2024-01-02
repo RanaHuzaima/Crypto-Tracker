@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TimeLine from "../Components/TimeLine";
 import Team from "../Components/Team";
 
 const AboutPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <section className=" max-w-screen-xl mx-auto mt-4">

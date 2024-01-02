@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import emailjs from "@emailjs/browser";
 
 const ContactPage = () => {
@@ -24,6 +24,10 @@ const ContactPage = () => {
         }
       );
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <section className=" max-w-screen-xl mx-auto mt-4 px-3">
@@ -118,7 +122,7 @@ const ContactPage = () => {
                   </div>
                   <button
                     type="submit"
-                    className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                    className="border font-bold bg-black text-white hover:bg-white hover:text-black border-slate-900 rounded-lg  px-5 py-2 shadow-slate-400 shadow-inner"
                   >
                     Send Message
                   </button>

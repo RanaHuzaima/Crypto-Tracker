@@ -7,8 +7,7 @@
 3. [Usage](#usage)
 4. [Routes](#routes)
 5. [Dependencies](#dependencies)
-6. [License](#license)
-7. [Live Link](#Live)
+6. [Live Link](#Live)
 
 ## Introduction
 
@@ -67,10 +66,6 @@ The Crypto Tracker relies on the following key dependencies:
 - ... (other dependencies)
 
 Check the `package.json` file for a complete list.
-
-## License
-
-The Crypto Tracker is licensed under the [MIT License](./LICENSE). Feel free to use, modify, and distribute the code as per the terms of the license.
 
 ## Live
 

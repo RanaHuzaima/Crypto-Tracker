@@ -1,10 +1,26 @@
 import { signOut } from "firebase/auth";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { auth } from "../Firebase/FirebaseApp";
+import { useAuth } from "../Context/AuthContext";
 import "/userpic.jpg";
 import { toast } from "react-toastify";
+import { TERipple } from "tw-elements-react";
+import { useSelector } from "react-redux";
+import { useSelectCurrencySign } from "../Redux/Slices/CurrencySignSlice";
+import { useSelectTime } from "../Redux/Slices/TimeSelectSlice.js";
+import { useSelectCurrencySelect } from "../Redux/Slices/CurrencySelectSlice.js";
+import { Link } from "react-router-dom";
 
 const UserSidebar = ({ userData }) => {
+  const { watchlist } = useAuth();
+  const { selectedSign } = useSelector(useSelectCurrencySign);
+  const { selectedTime } = useSelector(useSelectTime);
+  const { selectedCurrency } = useSelector(useSelectCurrencySelect);
+  const [coinData, setCoinData] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const firebaseData = watchlist;
+
   const [isopen, setIsopen] = useState(false);
 
   const handleIsOpen = () => {
@@ -23,6 +39,52 @@ const UserSidebar = ({ userData }) => {
       theme: "dark",
     });
   };
+  const FormatNumber = (value = 0) => {
+    const absValue = Math.abs(Number(value).toFixed(2));
+
+    const trillion = 1e12;
+    const billion = 1e9;
+    const million = 1e6;
+
+    if (absValue >= trillion) {
+      return `${selectedSign} ${(absValue / trillion).toFixed(2)} Trillion`;
+    } else if (absValue >= billion) {
+      return `${selectedSign} ${(absValue / billion).toFixed(2)} Billion`;
+    } else if (absValue >= million) {
+      return `${selectedSign} ${(absValue / million).toFixed(2)} Million`;
+    } else {
+      return `${selectedSign} ${absValue.toLocaleString("en-US")}`;
+    }
+  };
+  const fetchData = async () => {
+    const updatedArray = [];
+
+    for (const value of firebaseData) {
+      setLoading(true);
+      const fetchedData = async (value) => {
+        const options = {
+          headers: {
+            "x-access-token": import.meta.env.VITE_API_KEY,
+          },
+        };
+        const response = await fetch(
+          `https://api.coinranking.com/v2/coin/${value}?referenceCurrencyUuid=${selectedCurrency}&timePeriod=${selectedTime}`,
+          options
+        );
+        const data = await response.json();
+        return data.data.coin;
+      };
+
+      const result = await fetchedData(value);
+      updatedArray.push(result);
+    }
+
+    setCoinData(updatedArray);
+    console.log(coinData);
+  };
+  useEffect(() => {
+    fetchData();
+  }, [watchlist, selectedCurrency]);
   return (
     <>
       <img
@@ -91,21 +153,31 @@ const UserSidebar = ({ userData }) => {
                 <div className="mt-4 px-4 py-2 h-full overflow-y-scroll border mx-3 rounded-lg overflow-hidden">
                   <div className="grid grid-cols-1 sm:grid-cols-1 gap-4">
                     {/* <!-- Card 1 --> */}
-                    <div className=" hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-slate-900 transition-colors duration-300 flex items-center justify-between">
-                      <h3 className="text-lg font-semibold text-black">
-                        Bitcoin
-                      </h3>
-                      <span>$5524.02</span>
-                    </div>
+                    {coinData.length > 0 &&
+                      coinData.map((coin) => (
+                        <div key={coin.name} onClick={handleIsOpen}>
+                          <Link to={`/coin/${coin.uuid}`}>
+                            <div className="hover:bg-gray-100 p-4 cursor-pointer rounded-md border border-slate-900 transition-colors duration-300 flex items-center justify-between">
+                              <h3 className="text-lg font-semibold text-black">
+                                {/* Make sure to use the correct property from the coin object */}
+                                {coin.name}
+                              </h3>
+                              <span>{FormatNumber(coin.price)}</span>
+                            </div>
+                          </Link>
+                        </div>
+                      ))}
                   </div>
                 </div>
                 <div className="mt-4 px-4 flex justify-center">
-                  <button
-                    className=" border w-full border-slate-900 rounded-lg text-black text-xl py-3 hover:bg-black hover:text-white"
-                    onClick={handleLogout}
-                  >
-                    Logout
-                  </button>
+                  <TERipple rippleColor="bg-black" className=" w-full">
+                    <button
+                      className=" border font-bold bg-black text-white hover:bg-white hover:text-black border-slate-900 rounded-lg  px-2 py-2 w-full shadow-slate-400 shadow-inner"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </TERipple>
                 </div>
               </div>
             </div>

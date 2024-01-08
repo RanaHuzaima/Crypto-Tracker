@@ -4,13 +4,15 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { auth } from "../Firebase/FirebaseApp";
+import { auth, db } from "../Firebase/FirebaseApp";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { doc, onSnapshot } from "firebase/firestore";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [watchlist, setWatchlist] = useState([]);
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -75,6 +77,23 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (user) {
+      const coinRef = doc(db, "watchlist", user.uid);
+
+      var unsubscribe = onSnapshot(coinRef, (coin) => {
+        if (coin.exists()) {
+          setWatchlist(coin.data().coins);
+        } else {
+          console.log("No Item in Watchlist");
+        }
+      });
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [user]);
+
+  useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
@@ -86,9 +105,15 @@ const AuthProvider = ({ children }) => {
 
     return () => unsubscribe();
   }, [user]);
-
   return (
-    <AuthContext.Provider value={{ user, loginAction, SignUpAction }}>
+    <AuthContext.Provider
+      value={{
+        watchlist,
+        user,
+        loginAction,
+        SignUpAction,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

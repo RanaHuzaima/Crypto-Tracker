@@ -11,7 +11,7 @@ const SingleCoin = ({ coin }) => {
     <>
       <Link to={`/coin/${coin.uuid}`}>
         <div
-          key={coin.id}
+          key={coin.uuid}
           className="grid grid-cols-3 md:grid-cols-5 p-3 rounded-lg border-gray-200 border-b hover:bg-gray-200 items-center cursor-pointer"
         >
           <div className=" flex items-center gap-[3px] md:gap-2">

@@ -1,4 +1,3 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useAuth } from "../Context/AuthContext";
 import { toast } from "react-toastify";
@@ -65,8 +64,7 @@ focus:bg-white focus:outline-none"
         </div>
         <button
           type="submit"
-          className="w-full block bg-white text-black hover:bg-black hover:text-white   border-slate-900 border font-semibold rounded-lg
-px-4 py-3 mt-6"
+          className=" border font-bold bg-white text-black hover:bg-black hover:text-white border-slate-900 rounded-lg  px-4 py-3 mt-6 w-full shadow-slate-400 shadow-inner block overflow-hidden"
         >
           Log In
         </button>

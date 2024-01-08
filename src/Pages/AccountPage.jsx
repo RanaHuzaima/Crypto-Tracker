@@ -101,7 +101,7 @@ const AccountPage = () => {
             <button
               type="button"
               onClick={signInWithGoogle}
-              className="w-full block bg-white text-black hover:bg-black hover:fill-black hover:text-white   border-slate-900 border  font-semibold rounded-lg px-4 py-3"
+              className=" border font-bold bg-white text-black hover:bg-black hover:text-white border-slate-900 rounded-lg  px-4 py-3 w-full shadow-slate-400 shadow-inner block overflow-hidden"
             >
               <div className="flex items-center justify-center  hover:text-white">
                 <img

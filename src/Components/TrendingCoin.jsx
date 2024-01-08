@@ -34,7 +34,6 @@ const TrendingCoin = () => {
   }
   return (
     <>
-      {/* <div>Test Redux</div> */}
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-3 mb-3">
         <div className="  border border-slate-900 rounded-lg p-3">
           <div className="text-2xl font-bold mb-3">Top Best Coin</div>

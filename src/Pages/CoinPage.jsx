@@ -10,7 +10,6 @@ import {
 } from "../Hooks/FetchData.js";
 import { SkeletenLoadingSingleCoin } from "../Components/SkeletenLoading.jsx";
 
-// Lazy-loaded components
 const HistoryChart = lazy(() => import("../Components/HistoryChart"));
 const CoinDetail = lazy(() => import("../Components/CoinDetail"));
 const CoinPriceHistory = lazy(() => import("../Components/CoinPriceHistory"));
@@ -76,10 +75,12 @@ const CoinPage = () => {
                   </>
                 }
               >
-                <HistoryChart
-                  sparklineData={SingleCoinData.sparkline}
-                  change={SingleCoinData.change}
-                />
+                <div className="hidden  sm:block">
+                  <HistoryChart
+                    sparklineData={SingleCoinData.sparkline}
+                    change={SingleCoinData.change}
+                  />
+                </div>
                 <CoinDetail coinData={SingleCoinData} />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-10">
                   {HistoryData && (

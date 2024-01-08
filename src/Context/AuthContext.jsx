@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { auth } from "../Firebase/FirebaseApp";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AuthContext = createContext();
 
@@ -20,10 +21,26 @@ const AuthProvider = ({ children }) => {
         loginEmail,
         loginPassword
       );
-      alert(`Login Successful, Welcome ${result.user.email}`);
+      toast.success(`Welcome ${result.user.email}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
       navigate("/Dashboard");
     } catch (error) {
-      alert(`Error ${error.message}`);
+      toast.error(`Error ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
     }
   };
 
@@ -34,10 +51,26 @@ const AuthProvider = ({ children }) => {
         signupEmail,
         signupPassword
       );
-      alert(`Sign up Successful ${result.user.email}`);
+      toast.success(`Sign up Successful ${result.user.email}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
       navigate("/Dashboard");
     } catch (error) {
-      alert(`Error ${error.message}`);
+      toast.error(`Error ${error.message}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
     }
   };
 

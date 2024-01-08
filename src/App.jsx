@@ -1,58 +1,68 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Header from "./Components/Header";
-import DashboardPage from "./Pages/DashboardPage";
-import CoinPage from "./Pages/CoinPage";
-import ErrorPage from "./Pages/ErrorPage";
-import HomePage from "./Pages/HomePage";
-import PrivateRoute from "./Pages/PrivateRoute";
-import AccountPage from "./Pages/AccountPage";
-import AuthProvider from "./Context/AuthContext";
-import AboutPage from "./Pages/AboutPage";
-import ContactPage from "./Pages/ContactPage";
-import Footer from "./Components/Footer";
-import TermsConditionPage from "./Pages/TermsConditionPage";
-import DisclaimerPage from "./Pages/DisclaimerPage";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Loading from "./Components/Loading";
+
+const LazyHeader = lazy(() => import("./Components/Header"));
+const LazyDashboardPage = lazy(() => import("./Pages/DashboardPage"));
+const LazyCoinPage = lazy(() => import("./Pages/CoinPage"));
+const LazyErrorPage = lazy(() => import("./Pages/ErrorPage"));
+const LazyHomePage = lazy(() => import("./Pages/HomePage"));
+const LazyPrivateRoute = lazy(() => import("./Pages/PrivateRoute"));
+const LazyAccountPage = lazy(() => import("./Pages/AccountPage"));
+const LazyAuthProvider = lazy(() => import("./Context/AuthContext"));
+const LazyAboutPage = lazy(() => import("./Pages/AboutPage"));
+const LazyContactPage = lazy(() => import("./Pages/ContactPage"));
+const LazyFooter = lazy(() => import("./Components/Footer"));
+const LazyTermsConditionPage = lazy(() => import("./Pages/TermsConditionPage"));
+const LazyDisclaimerPage = lazy(() => import("./Pages/DisclaimerPage"));
 
 const App = () => {
   return (
     <>
       <Router>
-        <AuthProvider>
-          <Header />
-          <Routes>
-            <Route path="/" element={<HomePage />}>
-              HomePage
-            </Route>
-            <Route path="/Account" element={<AccountPage />}>
-              Account Page
-            </Route>
-            <Route path="/About" element={<AboutPage />}>
-              About Us
-            </Route>
-            <Route path="/Contact-us" element={<ContactPage />}>
-              Contact Us
-            </Route>
-            <Route element={<PrivateRoute />}>
-              <Route path="/Dashboard" element={<DashboardPage />} exact>
-                Dashboard
+        <Suspense fallback={<Loading />}>
+          <LazyAuthProvider>
+            <LazyHeader />
+            <Routes>
+              <Route path="/" element={<LazyHomePage />}>
+                HomePage
               </Route>
-              <Route path="/Coin/:id" element={<CoinPage />}>
-                Coin Page
+              <Route path="/Account" element={<LazyAccountPage />}>
+                Account Page
               </Route>
-            </Route>
-            <Route path="/Term-Condition" element={<TermsConditionPage />}>
-              Term Condition Page
-            </Route>
-            <Route path="/Disclaimer" element={<DisclaimerPage />}>
-              Disclaimer
-            </Route>
-            <Route path="*" element={<ErrorPage />}>
-              Error Page
-            </Route>
-          </Routes>
-          <Footer />
-        </AuthProvider>
+              <Route path="/About" element={<LazyAboutPage />}>
+                About Us
+              </Route>
+              <Route path="/Contact-us" element={<LazyContactPage />}>
+                Contact Us
+              </Route>
+              <Route element={<LazyPrivateRoute />}>
+                <Route path="/Dashboard" element={<LazyDashboardPage />} exact>
+                  Dashboard
+                </Route>
+                <Route path="/Coin/:id" element={<LazyCoinPage />}>
+                  Coin Page
+                </Route>
+              </Route>
+              <Route
+                path="/Term-Condition"
+                element={<LazyTermsConditionPage />}
+              >
+                Term Condition Page
+              </Route>
+              <Route path="/Disclaimer" element={<LazyDisclaimerPage />}>
+                Disclaimer
+              </Route>
+              <Route path="*" element={<LazyErrorPage />}>
+                Error Page
+              </Route>
+            </Routes>
+            <LazyFooter />
+            <ToastContainer />
+          </LazyAuthProvider>
+        </Suspense>
       </Router>
     </>
   );

@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Footer = () => {
   const form = useRef();
@@ -15,15 +16,31 @@ const Footer = () => {
         "service_k9fd8tn",
         "template_74hfv6g",
         form.current,
-        "dys7SFrmJ2i985__K"
+        "rX-3JLQkWxTjPUNnp"
       )
       .then(
         (result) => {
-          alert("Message Sent");
+          toast.success("Message Sent!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "dark",
+          });
           e.target.reset();
         },
         (error) => {
-          alert("Message Not Sent");
+          toast.error("Message not Sent!", {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "dark",
+          });
         }
       );
   };
@@ -44,7 +61,7 @@ const Footer = () => {
                   className="sm:text-start text-center"
                 >
                   <input
-                    id="email"
+                    id="email2"
                     name="email"
                     required
                     type="text"

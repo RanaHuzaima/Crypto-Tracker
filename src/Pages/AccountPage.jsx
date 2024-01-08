@@ -1,14 +1,16 @@
+import React, { useEffect, useState, lazy, Suspense } from "react";
+import { toast } from "react-toastify";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../Firebase/FirebaseApp";
 import {
   TETabs,
   TETabsContent,
   TETabsItem,
   TETabsPane,
 } from "tw-elements-react";
-import Login from "../Components/Login";
-import SignUp from "../Components/SignUp";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../Firebase/FirebaseApp";
-import React, { useEffect, useState } from "react";
+
+const Login = lazy(() => import("../Components/Login"));
+const SignUp = lazy(() => import("../Components/SignUp"));
 
 const AccountPage = () => {
   const [basicActive, setBasicActive] = useState("tab1");
@@ -23,10 +25,26 @@ const AccountPage = () => {
   const signInWithGoogle = () => {
     signInWithPopup(auth, googleProvider)
       .then((res) => {
-        alert(`Sign In With Google Successful. Welcome ${res.user.email}`);
+        toast.success(`Welcome ${res.user.email}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
       })
       .catch((error) => {
-        alert(`Error ${error.message}`);
+        toast.error(`Error ${error.message}`, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
       });
   };
   useEffect(() => {
@@ -69,14 +87,15 @@ const AccountPage = () => {
                 Signup
               </TETabsItem>
             </TETabs>
-
             <TETabsContent>
-              <TETabsPane show={basicActive === "tab1"}>
-                <Login />
-              </TETabsPane>
-              <TETabsPane show={basicActive === "tab2"}>
-                <SignUp />
-              </TETabsPane>
+              <Suspense fallback={<div>Loading...</div>}>
+                <TETabsPane show={basicActive === "tab1"}>
+                  <Login />
+                </TETabsPane>
+                <TETabsPane show={basicActive === "tab2"}>
+                  <SignUp />
+                </TETabsPane>
+              </Suspense>
             </TETabsContent>
             <hr className="my-6 border-gray-300 w-full" />
             <button

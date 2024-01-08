@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { auth } from "../Firebase/FirebaseApp";
 import { useAuth } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
@@ -11,7 +11,15 @@ const Login = () => {
   const HandleSubmit = (e) => {
     e.preventDefault();
     if (!loginEmail || !loginPassword) {
-      alert("Please fill all the Fields");
+      toast.error("Please fill all the Fields", {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "dark",
+      });
     } else {
       loginAction(loginEmail, loginPassword);
       return;

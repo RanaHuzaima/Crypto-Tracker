@@ -46,6 +46,7 @@ const HomePage = () => {
                 className="w-full rounded-md"
                 src="/HomePage.gif"
                 alt="hero image"
+                loading="lazy"
               />
             </div>
           </div>

@@ -2,6 +2,7 @@ import { signOut } from "firebase/auth";
 import React, { useState } from "react";
 import { auth } from "../Firebase/FirebaseApp";
 import "/userpic.jpg";
+import { toast } from "react-toastify";
 
 const UserSidebar = ({ userData }) => {
   const [isopen, setIsopen] = useState(false);
@@ -12,6 +13,15 @@ const UserSidebar = ({ userData }) => {
   const handleLogout = () => {
     signOut(auth);
     setIsopen(!isopen);
+    toast.success("Successfully Logged Out", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "dark",
+    });
   };
   return (
     <>

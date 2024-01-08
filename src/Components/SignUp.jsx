@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "../Firebase/FirebaseApp";
 import { useAuth } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [signupEmail, setSignupEmail] = useState("");
@@ -18,7 +17,15 @@ const SignUp = () => {
       signupConfirmPassword !== ""
     ) {
       if (signupPassword !== signupConfirmPassword) {
-        alert("Passwords do not match");
+        toast.error("Passwords do not match", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "dark",
+        });
       } else {
         SignUpAction(signupEmail, signupPassword);
         return;

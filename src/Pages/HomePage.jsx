@@ -1,7 +1,30 @@
-import React, { useEffect } from "react";
+import React, { lazy, useEffect, useRef } from "react";
 import Button from "../Components/Button";
 
 const HomePage = () => {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.play();
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (video) {
+      observer.observe(video);
+    }
+
+    return () => video && observer.unobserve(video);
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -42,12 +65,16 @@ const HomePage = () => {
               </div>
             </div>
             <div className="items-center md:justify-end col-span-1 flex order-first md:order-last ">
-              <img
-                className="w-full rounded-md"
-                src="/HomePage.gif"
-                alt="hero image"
+              <video
+                ref={videoRef}
+                loop
+                autoplay
+                playsinline
+                muted
                 loading="lazy"
-              />
+              >
+                <source src="/HomePage.webm" type="video/webm" />
+              </video>
             </div>
           </div>
         </div>

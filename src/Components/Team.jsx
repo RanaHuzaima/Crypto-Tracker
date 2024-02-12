@@ -30,9 +30,10 @@ const Team = () => {
               >
                 <div className="relative overflow-hidden px-6">
                   <img
-                    src="https://rb.gy/du8kug"
+                    src="https://i.ibb.co/T2mvJX5/zain-Img.jpg"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
+                    loading="lazy"
                   />
                 </div>
                 <div className="pt-6 text-center">
@@ -143,7 +144,7 @@ const Team = () => {
               >
                 <div className="relative overflow-hidden px-6">
                   <img
-                    src="https://rb.gy/1a047l"
+                    src="https://i.ibb.co/p07dZnr/Profile-Pic.jpg"
                     className="max-w-full h-auto mx-auto rounded-full bg-gray-50 grayscale"
                     alt="title image"
                     loading="lazy"

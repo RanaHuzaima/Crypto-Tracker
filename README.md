@@ -75,4 +75,4 @@ The Taxi App is licensed under the [MIT License](./LICENSE). Feel free to use, m
 
 ## Live
 
-This is deploy on netlify. **Live Link**: https://bit.ly/Crypto-tracker
+This is deploy on netlify. **Live Link**: https://bit.ly/48khCwE
